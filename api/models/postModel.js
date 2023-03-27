@@ -46,7 +46,7 @@ class Post {
 
     async update(data) {
         const response = await db.query("UPDATE post SET votes = $1 WHERE post_id = $2 RETURNING post_id, votes;",
-            [ this.votes + data.votes, this.id ]);
+            [ this.votes + data.votes, this.post_id ]);
         if (response.rows.length != 1) {
             throw new Error("Unable to update votes.")
         }
@@ -54,7 +54,7 @@ class Post {
     }
 
     async destroy() {
-        let response = await db.query("DELETE FROM post WHERE post_id = $1 RETURNING *;", [this.id]);
+        let response = await db.query("DELETE FROM post WHERE post_id = $1 RETURNING *;", [this.post_id]);
         return new Post(response.rows[0]);
     }
 }
