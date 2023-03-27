@@ -32,7 +32,7 @@ class Account {
     };
 
     async update(data) {
-        const { user_id, first_name, last_name, email, password } = data;
+        const { first_name, last_name, email, password } = data;
         const response = await db.query("UPDATE account SET first_name = $1, last_name = $2, email = $3, password = $4 WHERE user_id = $5 RETURNING *;", 
             [first_name, last_name, email, password, this.user_id]);
         if (response.rows.length != 1) {
