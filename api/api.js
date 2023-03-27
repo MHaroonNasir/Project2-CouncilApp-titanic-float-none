@@ -1,10 +1,12 @@
 const express = require('express');
 const cors = require('cors');
 
-const router = require('./routes/userRoute');
+const accountRoute = require('./routes/accountRoute');
 
 const api = express();
+api.use(cors());
+api.use(express.json());
 
-//api.use("/", );
+api.use("/account", accountRoute);
 
 module.exports = api;
