@@ -1,7 +1,30 @@
+function createPostElement(data) {
+  const post = document.createElement("div");
+  post.className = "post";
+
+  const header = document.createElement("h2");
+  header.textContent = data["title"];
+  post.appendChild(header);
+
+  const content = document.createElement("p");
+  content.textContent = data["content"];
+  post.appendChild(content);
+
+  const category = document.createElement("p");
+  category.textContent = data["category"];
+  post.appendChild(category);
+
+  return post;
+}
+
 async function getAllPosts() {
-  document.getElementById("btn-search").addEventListener("click", async () => {
-    const response = await fetch(`http://localhost:3000/posts/${category}`);
-    const data = await response.json();
-    console.log(data);
+  const response = await fetch(`http://localhost:3000/posts`);
+  const data = await response.json();
+  const container = document.getElementById("posts");
+  data.forEach((post) => {
+    const elem = createPostElement(post);
+    container.appendChild(elem);
   });
 }
+
+getAllPosts();
