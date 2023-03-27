@@ -10,7 +10,7 @@ class Post {
     this.category = category;
     this.votes = votes;
     this.created_date = created_date;
-    this.user_id = user_id
+    this.user_id = user_id;
 }
 
     static async getAll() {
