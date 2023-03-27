@@ -1,11 +1,12 @@
 const db = require('../db/connect');
 
 class Account {
-    constructor({user_id, first_name, last_name, email}) {
+    constructor({user_id, first_name, last_name, email, password}) {
         this.user_id = user_id,
         this.first_name = first_name,
         this.last_name = last_name,
-        this.email = email
+        this.email = email,
+        this.password = password
     };
 
     static async getAll() {
