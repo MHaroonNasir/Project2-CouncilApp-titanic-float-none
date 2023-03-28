@@ -32,7 +32,8 @@ async function getTop(req, res) {
 async function create(req, res) {
   try {
     const data = req.body;
-    const post = await Post.create(data);
+    const userId = req.user_id;
+    const post = await Post.create(data, userId);
     res.status(201).json(post);
   } catch (err) {
     res.status(404).json({ error: err.message });

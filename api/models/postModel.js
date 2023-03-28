@@ -48,14 +48,14 @@ class Post {
     }
     return new Post(response.rows[0]);
   }
-  static async create(data) {
-    const { title, content, category, user_id } = data;
+  static async create(data, userId) {
+    const { title, content, category} = data;
     const response = await db.query(
       "INSERT INTO post (title, content, category, user_id) VALUES ($1, $2, $3, $4) RETURNING *;",
-      [title, content, category, user_id]
+      [title, content, category, userId]
     );
 
-    return response.rows.map((w) => new Post(w));
+    return response.rows[0];
   }
 
     async update(data) {
