@@ -1,12 +1,12 @@
 const db = require('../db/connect');
 
 class Account {
-    constructor({user_id, first_name, last_name, email, password}) {
+    constructor({user_id, username, email, password}) {
         this.user_id = user_id;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.username = username
         this.email = email;
         this.password = password;
+
     };
 
     static async getAll() {
@@ -25,17 +25,28 @@ class Account {
         return new Account(response.rows[0]);
     };
 
+    static async getOneByUsername(username) {
+        const response = await db.query("SELECT * FROM account WHERE username = $1", [username]);
+        if (response.rows.length != 1) {
+            throw new Error("Unable to locate user.");
+        };
+        return new Account(response.rows[0]);
+    };
+    
+
     static async create(data) {
-        const { first_name, last_name, email, password } = data;
-        const response = await db.query("INSERT INTO account (first_name, last_name, email, password) VALUES ($1, $2, $3, $4) RETURNING *;", 
-            [first_name, last_name, email, password]);
-        return response.rows.map(a => new Account(a));
+        const { username, email, password } = data;
+        let response = await db.query("INSERT INTO account (username, email, password) VALUES ($1, $2, $3) RETURNING *;", 
+            [username, email, password]);
+            const newId = response.rows[0].user_id;
+            const newUser = await Account.getOneById(newId);
+            return newUser;
     };
 
     async update(data) {
-        const { first_name, last_name, email, password } = data;
-        const response = await db.query("UPDATE account SET first_name = $1, last_name = $2, email = $3, password = $4 WHERE user_id = $5 RETURNING *;", 
-            [first_name, last_name, email, password, this.user_id]);
+        const { username, email, password } = data;
+        const response = await db.query("UPDATE account SET username = $1, email = $2, password = $3 WHERE user_id = $4 RETURNING *;", 
+            [username, email, password, this.user_id]);
         if (response.rows.length != 1) {
             throw new Error("Unable to update votes.");
         };
