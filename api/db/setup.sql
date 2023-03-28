@@ -1,21 +1,21 @@
 DROP TABLE IF EXISTS volunteer;
 DROP TABLE IF EXISTS post;
+DROP TABLE IF EXISTS token;
 DROP TABLE IF EXISTS account;
 
 CREATE TABLE account (
     user_id INT GENERATED ALWAYS AS IDENTITY,
-    first_name varchar(50) NOT NULL,
-    last_name varchar(50) NOT NULL,
-    email varchar(50) NOT NULL,
-    password varchar(50) NOT NULL,
+    username VARCHAR(50) NOT NULL,
+    email TEXT NOT NULL,
+    password VARCHAR(60) NOT NULL,
     PRIMARY KEY (user_id)
 );
 
 CREATE TABLE post (
     post_id INT GENERATED ALWAYS AS IDENTITY,
-    title varchar(50) NOT NULL,
-    content varchar(250) NOT NULL,
-    category varchar(30) NOT NULL,
+    title VARCHAR(50) NOT NULL,
+    content VARCHAR(500) NOT NULL,
+    category VARCHAR(30) NOT NULL,
     votes INT DEFAULT 0,
     created_date TIMESTAMP NOT NULL DEFAULT NOW(),
     user_id INT NOT NULL,
@@ -32,14 +32,22 @@ CREATE TABLE volunteer (
     PRIMARY KEY (volunteer_id)
 );
 
+CREATE TABLE token (
+    token_id INT GENERATED ALWAYS AS IDENTITY,
+    user_id INT NOT NULL,
+    token CHAR(36) UNIQUE NOT NULL,
+    PRIMARY KEY (token_id),
+    FOREIGN KEY (user_id) REFERENCES account("user_id")
+);
 
-INSERT INTO account (first_name, last_name, email, password)
+
+INSERT INTO account (username, email, password)
 VALUES
-    ('John', 'Doe', 'john.doe@example.com', 'password'),
-    ('Jane', 'Smith', 'jane.smith@example.com', 'password'),
-    ('Bob', 'Johnson', 'bob.johnson@example.com', 'password'),
-    ('Sarah', 'Davis', 'sarah.davis@example.com', 'password'),
-    ('Mike', 'Brown', 'mike.brown@example.com', 'password');
+    ('John', 'john.doe@example.com', 'password'),
+    ('Jane', 'jane.smith@example.com', 'password'),
+    ('Bob', 'bob.johnson@example.com', 'password'),
+    ('Sarah', 'sarah.davis@example.com', 'password'),
+    ('Mike', 'mike.brown@example.com', 'password');
 
     INSERT INTO post (title, content, category, user_id)
 VALUES
