@@ -8,7 +8,7 @@ api.use(express.json());
 const accountRoute = require('./routes/accountRoute');
 const postRouter = require('./routes/postRoutes');
 
-api.use("/posts", postRouter);
 api.use("/account", accountRoute);
+api.use("/posts", postRouter);
 
 module.exports = api;

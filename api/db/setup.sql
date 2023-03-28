@@ -17,7 +17,7 @@ CREATE TABLE post (
     content varchar(250) NOT NULL,
     category varchar(30) NOT NULL,
     votes INT DEFAULT 0,
-    created_date TIMESTAMP NOT NULL DEFAULT NOW(),
+    created_date TIMESTAMP DEFAULT NOW(),
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES account("user_id"), 
     PRIMARY KEY (post_id)
