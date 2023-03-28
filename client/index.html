@@ -10,15 +10,23 @@
     <script src="./assets/js/logout.js" defer></script>
   </head>
   <body>
+
     <nav>
       <button id="logout">Log Out</button>
     </nav>
-    <h1>Florin Council Community</h1>
-    <div id="posts" class="container">
-      <form>
-        <input type="text" placeholder="Search..." />
-        <button id="btn-search" type="submit">Search</button>
-      </form>
+    <h1>Florin Council Community</h1>   
+    <div class="search-container">
+      <label for="search">Search for Vonlunteer jobs</label>
+      <input type="serach" id="search" data-search />
+
     </div>
+    <div class="post-cards" data-post-cards-container></div>
+    <template data-post-template>
+      <div class="card">
+        <div class="title" data-title></div>
+        <div class="content" data-content></div>
+        <div class="category" data-category></div>
+      </div>
+    </template>
   </body>
 </html>
