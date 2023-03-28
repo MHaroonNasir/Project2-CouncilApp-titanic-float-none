@@ -1,6 +1,6 @@
-const { Router } = require('express');
+const { Router } = require("express");
 
-const postController = require('../controllers/postController');
+const postController = require("../controllers/postController");
 
 const postRouter = Router();
 
