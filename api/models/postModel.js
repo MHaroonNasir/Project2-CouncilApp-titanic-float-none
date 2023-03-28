@@ -48,6 +48,8 @@ class Post {
     }
     return new Post(response.rows[0]);
   }
+
+  
   static async create(data, userId) {
     const { title, content, category} = data;
     const response = await db.query(

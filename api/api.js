@@ -4,6 +4,7 @@ const cors = require('cors');
 const logRoutes = require('./middleware/logger');
 const accountRoute = require('./routes/accountRoute');
 const postRouter = require('./routes/postRoutes');
+const tokenRoute = require('./routes/tokenRoute');
 
 const api = express();
 
@@ -13,5 +14,6 @@ api.use(logRoutes);
 
 api.use("/account", accountRoute);
 api.use("/posts", postRouter);
+api.use("/token", tokenRoute);
 
 module.exports = api;
