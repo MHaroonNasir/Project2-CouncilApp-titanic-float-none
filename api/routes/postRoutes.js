@@ -10,6 +10,7 @@ const postRouter = Router();
 postRouter.get("/", postController.index);
 postRouter.get("/top", postController.getTop);
 postRouter.get("/:id", postController.show);
+postRouter.get("/user/:id", postController.getByUserId);
 postRouter.post("/",authenticator, postController.create);
 postRouter.delete("/:id", postController.destroy);
 postRouter.patch("/:id", postController.update);

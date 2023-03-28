@@ -47,9 +47,7 @@ async function update(req, res) {
 async function destroy(req, res) {
   try {
     const userId = parseInt(req.params.id);
-    console.log(userId);
     const account = await accountModel.getOneById(userId);
-    console.log(account);
     const result = await account.destroy();
     res.status(204).json(result);
   } catch (err) {
