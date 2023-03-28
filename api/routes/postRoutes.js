@@ -7,7 +7,7 @@ const authenticator = require('../middleware/authenticator');
 
 const postRouter = Router();
 
-postRouter.get("/", authenticator, postController.index);
+postRouter.get("/", postController.index);
 postRouter.get("/top", postController.getTop);
 postRouter.get("/:id", postController.show);
 postRouter.post("/", postController.create);

@@ -9,6 +9,7 @@ api.use(express.json());
 const request = require("supertest");
 
 const accountRoute = require('../routes/accountRoute');
+const { hash } = require('bcrypt');
 
 api.use(accountRoute);
 
@@ -26,35 +27,31 @@ describe("/account", () => {
         //console.log("resp",resp.body);
         expect(resp.body).toStrictEqual({
             user_id: 2,
-            first_name: "Jane",
-            last_name: "Smith",
+            username: "Jane",
             email: "jane.smith@example.com",
             password: "password"
         });
     });
 
     it("POST /", async () => {
-        const resp = await request(api).post('/').send({
-            first_name: "Bob",
-            last_name: "Cato",
+        const resp = await request(api).post('/register').send({
+            username: "Bob",
             email: "doo.bar@example.com",
             password: "password"
         });
         expect(resp.statusCode).toBe(201);
         //console.log("resp",resp.body);
-        expect(resp.body).toStrictEqual([{
+        expect(resp.body).toStrictEqual({
             user_id: 6,
-            first_name: "Bob",
-            last_name: "Cato",
+            username: "Bob",
             email: "doo.bar@example.com",
-            password: "password"
-        }]);
+            password: expect.any(String)
+        });
     });
 
     it("PATCH /:id", async () => {
         const resp = await request(api).patch('/3').send({
-            first_name: "patchtest",
-            last_name: "patchtest",
+            username: "patchtest",
             email: "test.test@example.com",
             password: "password"
         });
@@ -62,8 +59,7 @@ describe("/account", () => {
         //console.log("resp",resp.body);
         expect(resp.body).toStrictEqual({
             user_id: 3,
-            first_name: "patchtest",
-            last_name: "patchtest",
+            username: "patchtest",
             email: "test.test@example.com",
             password: "password"
         });
