@@ -11,7 +11,7 @@ api.use(cors());
 api.use(express.json());
 api.use(logRoutes);
 
-api.use("/posts", postRouter);
 api.use("/account", accountRoute);
+api.use("/posts", postRouter);
 
 module.exports = api;
