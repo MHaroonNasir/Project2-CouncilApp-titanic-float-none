@@ -63,7 +63,7 @@ describe("/posts", () => {
             votes: 25
         });
         expect(resp.statusCode).toBe(200);
-        console.log("resp",resp.body);
+        //console.log("resp",resp.body);
         expect(resp.body).toStrictEqual({
             post_id: 3,
             votes: 25
