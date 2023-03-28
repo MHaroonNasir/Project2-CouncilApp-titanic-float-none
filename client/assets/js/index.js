@@ -18,7 +18,12 @@ function createPostElement(data) {
 }
 
 async function getAllPosts() {
-  const response = await fetch(`http://localhost:3000/posts`);
+  const options = {
+    headers: {
+      'Authorization' : localStorage.getItem("token")
+    }
+  }
+  const response = await fetch(`http://localhost:3000/posts`, options);
   const data = await response.json();
   const container = document.getElementById("posts");
   data.forEach((post) => {

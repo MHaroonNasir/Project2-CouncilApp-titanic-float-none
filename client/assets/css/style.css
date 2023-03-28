@@ -1,0 +1,80 @@
+header {
+    background-color: #1c1c1c;
+    color: #fff;
+    padding: 10px;
+  }
+  
+  h1 {
+    margin: 0;
+    font-size: 2em;
+    text-align: center;
+  }
+
+/* Navigation styling */
+nav {
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px;
+  }
+  
+  nav button {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #0066cc;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Search form styling */
+  form {
+    display: flex;
+    margin: 20px;
+  }
+  
+  input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+  }
+  
+  button#btn-search {
+    padding: 10px;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    background-color: #0066cc;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  /* Blog post styling */
+  .post {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .post h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .post p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #666;
+  }
+
+ .text-center {
+    text-align: center;
+  }
+  
+  
+  
+  
