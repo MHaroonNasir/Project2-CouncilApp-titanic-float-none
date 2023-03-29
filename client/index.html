@@ -6,30 +6,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Homepage</title>
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <script src="./assets/js/index.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,500;0,600;1,300&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="./assets/js/index.js" type="module" defer></script>
+
     <script src="./assets/js/logout.js" defer></script>
     <script src="./assets/js/createPost.js" defer></script>
+    <script src="./assets/js/userProfile.js" type="module" defer></script>
   </head>
   <body>
-
-    <nav>
-      <button id="logout">Log Out</button>
-      <a href="userProfile.html"><button type="button">My Profile</button></a>
-      <a href="createPost.html"><button type="button">Create a new post</button></a>
-    </nav>
-    <h1>Florin Council Community</h1>   
-    <div class="search-container">
-      <label for="search">Search for Vonlunteer jobs</label>
-      <input type="serach" id="search" data-search />
-
-    </div>
-    <div class="post-cards" data-post-cards-container></div>
-    <template data-post-template>
-      <div class="card">
-        <div class="title" data-title></div>
-        <div class="content" data-content></div>
-        <div class="category" data-category></div>
+    <header>
+      <nav class="index-header">
+        <div class="logo">
+          <a href="#">Our Council</a>
+        </div>
+        <div class="nav-links">
+          <a class="user-link">Your Account</a>
+          <button id="logout">Log Out</button>
+          <a id="createPost">New Post</a>
+        </div>
+      </nav>
+      <div class="banner-area">
+        <h1 class="page-title">Florin Council Community</h1>
+        <div class="search-container">
+          <label class="search-lable" for="search"
+            >Search for Volunteer Events</label
+          >
+          <input class="search-field" type="search" id="search" data-search />
+        </div>
       </div>
-    </template>
+    </header>
+    <div class="content-area">
+      <h2 class="subtitle-cards">Upcoming Events</h2>
+      <div class="post-cards" data-post-cards-container></div>
+      <template data-post-template>
+        <div class="card">
+          <div class="card-content">
+            <button class="btn-apply" btn-apply>Apply</button>
+            <div class="title" data-title></div>
+            <div class="content" data-content></div>
+            <div class="category" data-category></div>
+          </div>
+        </div>
+      </template>
+    </div>
+    <section role="region" class="quote-section">
+      <blockquote>
+        <h3 id="quote">
+          
+        </h3>
+      </blockquote>
+      <cite id="author"><small></small></cite>
+    </section>
+    <footer>
+      <h6>
+        <a href="index.html">Top ↑</a>
+      </h6>
+      <h6>Copyright ©</h6>
+    </footer>
   </body>
 </html>

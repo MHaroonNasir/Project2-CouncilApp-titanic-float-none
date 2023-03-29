@@ -1,5 +1,5 @@
 const db = require('../db/connect');
-
+const Post = require('./postModel')
 class Volunteer {
     constructor({volunteer_id, post_id, user_id}) {
         this.volunteer_id = volunteer_id;
@@ -19,20 +19,26 @@ class Volunteer {
         let response;
         if (fieldName == "volunteer_id") {
             response = await db.query("SELECT * FROM volunteer WHERE volunteer_id = $1;", [id]);
+            return new Volunteer(response.rows[0]);
         } else if (fieldName == "post_id") {
-            response = await db.query("SELECT * FROM volunteer WHERE post_id = $1;", [id]);
+            response = await db.query("SELECT *, v.volunteer_id FROM post AS p JOIN volunteer AS v ON (p.post_id = v.post_id) WHERE v.post_id = $1;", [id]);
         } else if (fieldName == "user_id") {
-            response = await db.query("SELECT * FROM volunteer WHERE user_id = $1;", [id]);
+            response = await db.query("SELECT *, v.volunteer_id FROM post AS p JOIN volunteer AS v ON (p.post_id = v.post_id) WHERE v.user_id = $1;", [id]);
         } else {
             throw new Error("Incorrect query string!");
         };
         if (response.rows.length < 1) {
             throw new Error("Cannot find Volunteer ID in Volunteer Table.");
         };
-        if (response.rows.length != 1) {
-            return response.rows.map(v => new Volunteer(v));
+        let arr = []
+        if (response.rows.length >= 1) {
+            response.rows.map(v => {
+                const newPost = new Post(v);
+                newPost.volunteer_id = v.volunteer_id
+                arr.push(newPost)
+            });
         }
-        return new Volunteer(response.rows[0]);
+        return arr;
     };
 
     static async create(data) {
@@ -53,7 +59,7 @@ class Volunteer {
     };
 
     async destroy() {
-        const response = await db.query("DELETE FROM volunteer WHERE volunteer_id = $1 RETURNING *;", 
+        let response = await db.query("DELETE FROM volunteer WHERE volunteer_id = $1 RETURNING *;", 
             [this.volunteer_id]);
         return new Volunteer(response.rows[0]);
     };

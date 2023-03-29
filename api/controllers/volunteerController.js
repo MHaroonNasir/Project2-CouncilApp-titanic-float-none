@@ -9,6 +9,16 @@ async function index(req, res) {
         res.status(500).json({ error: err.message });
     }
 };
+async function getByUserId(req, res) {
+  try {
+    const queryArr = Object.keys(req.query);
+    const userId = req.query[queryArr[0]];
+    const volunteers = await volunteerModel.getOneById(userId, queryArr[0]);
+    res.status(200).json(volunteers);
+  } catch (err) {
+    res.status(404).json({ error: err.message });
+  }
+  }
   
 async function show(req, res) {
     try {
@@ -48,7 +58,9 @@ async function destroy(req, res) {
     try {
       const userId = parseInt(req.params.id);
       const volunteer = await volunteerModel.getOneById(userId, "volunteer_id");
+      //console.log(volunteer)
       const result = await volunteer.destroy();
+      //console.log(volunteer)
       res.status(204).json(result);
     } catch (err) {
       res.status(404).json({ error: err.message });
@@ -60,5 +72,6 @@ module.exports = {
     show,
     create,
     update,
-    destroy
+    destroy,
+    getByUserId,
 };
