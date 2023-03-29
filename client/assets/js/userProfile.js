@@ -45,7 +45,7 @@ async function getUserInfo() {
     });
     const userPosts = await userPostsResponse.json();
     const postsList  = document.getElementById("user-posts");
-    if (userPosts.length > 1){
+    if (userPosts.length >= 1){
       userPosts.forEach((post) => {
         const card = document.createElement("div");
         card.classList.add("card");
@@ -109,7 +109,7 @@ async function getVolunteerPosts() {
       });
         const volunteerPosts = await userVolunteerResponse.json();
     const volunteerLists  = document.getElementById("volunteer-posts");
-    if (volunteerPosts.length > 1){
+    if (volunteerPosts.length >= 1){
       volunteerPosts.forEach((post) => {
         console.log(post);
         const card = document.createElement("div");
@@ -120,14 +120,14 @@ async function getVolunteerPosts() {
         cardContent.innerText = post.content;
         const cardCategory = document.createElement("p");
         cardCategory.innerText = `Category: ${post.category}`;
-        const cardPostId = post.post_id;
+        const cardPostId = post.volunteer_id;
             
             const deleteButton = document.createElement("button");
             deleteButton.innerText = "Delete";
 
             deleteButton.addEventListener("click", async () => {
               try {
-                await fetch(`http://localhost:3000/posts/${cardPostId}`, {
+                await fetch(`http://localhost:3000/volunteer/${cardPostId}`, {
                   method: "DELETE",
                   headers: {
                     "Content-Type": "application/json",
