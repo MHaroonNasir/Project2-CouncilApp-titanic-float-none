@@ -1,3 +1,5 @@
+import { getUserIdByToken } from './userProfile.js';
+
 const postCardTemplate = document.querySelector("[data-post-template]");
 const postCardContainer = document.querySelector("[data-post-cards-container]");
 const searchInput = document.querySelector("[data-search]");
@@ -56,7 +58,7 @@ async function volunteer (e) {
 
 const applyToVolunteer = () => {
   const applyToPost = Array.from(document.getElementsByClassName("btn-apply"));
-  //console.log(applyToPost)
+  console.log(applyToPost)
   applyToPost.forEach(button => {
     button.addEventListener("click", volunteer)
   });
