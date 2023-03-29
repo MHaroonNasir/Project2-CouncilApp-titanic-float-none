@@ -1,4 +1,4 @@
-import { getUserIdByToken } from "./userProfile";
+
 
 const postCardTemplate = document.querySelector("[data-post-template]");
 const postCardContainer = document.querySelector("[data-post-cards-container]");
