@@ -41,7 +41,7 @@ async function volunteer(e) {
       post_id: parseInt(e.target.classList[1]),
       user_id: parseInt(data["user_id"]),
     }),
-  })
+    })
     .then((response) => {
       if (!response) {
         throw new Error("No valid network response!");
@@ -51,7 +51,7 @@ async function volunteer(e) {
     .catch((error) => {
       console.error("Error:", error);
     });
-  window.location.href = "userProfile.html";
+     window.location.href = 'userProfile.html'
 }
 
 const applyToVolunteer = () => {
@@ -60,6 +60,7 @@ const applyToVolunteer = () => {
     button.addEventListener("click", async (e) => {
       if ((await isLogin()) == true) {
         volunteer(e);
+        // window.location.href = 'userProfile.html'
       } else {
         window.location.href = "login.html";
       }
@@ -173,6 +174,39 @@ if (logIn) {
     window.location.href = "login.html";
   });
 }
+
+const options = {
+  method: 'GET',
+  headers: {
+    'X-RapidAPI-Key': '1b966221f6mshe27357ce1912d04p1dc00ajsn49c84317578b',
+    'X-RapidAPI-Host': 'quotes15.p.rapidapi.com'
+  }
+};
+
+ function fetchQuote() {
+    fetch('https://quotes15.p.rapidapi.com/quotes/random/', options)
+    .then(response => response.json())
+    .then(data => {
+      const quote = data.content;
+      const author = data.originator.name;
+
+      if (quote.length < 100) {
+        document.getElementById("quote").innerHTML = quote;
+        document.getElementById("author").innerHTML = author;
+      } else {
+        console.log("quote too long ")
+        fetchQuote();
+      }
+    })
+    .catch(err => console.error(err));
+}
+
+fetchQuote();
+
+
+
+
+
 
 getAllPosts();
 getUserIdByToken();
