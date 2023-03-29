@@ -22,18 +22,15 @@ async function getUserId() {
   await fetch(`http://127.0.0.1:3000/account/${userId}`)
     .then((response) => response.json())
     .then((data) => {
-      //console.log(data)
       dataHolder = data;
     });
   return dataHolder;
 }
 
 async function volunteer(e) {
-  //console.log("called", e.target.classList[1]);
   const postId = e.target.classList[1];
 
   const data = await getUserId();
-  //console.log(data["user_id"]);
 
   await fetch(`http://127.0.0.1:3000/volunteer/`, {
     method: "POST",
@@ -54,21 +51,16 @@ async function volunteer(e) {
     .catch((error) => {
       console.error("Error:", error);
     });
-  //console.log("done");
+  window.location.href = "userProfile.html";
 }
 
 const applyToVolunteer = () => {
   const applyToPost = Array.from(document.getElementsByClassName("btn-apply"));
-  //console.log(applyToPost)
   applyToPost.forEach((button) => {
     button.addEventListener("click", async (e) => {
       if ((await isLogin()) == true) {
-        //console.log("logged in");
-        //const userId = getUserIdByToken();
-        //console.log(userId)
         volunteer(e);
       } else {
-        //console.log("logged out");
         window.location.href = "login.html";
       }
     });
@@ -81,11 +73,10 @@ const createPostBtn = document.getElementById("createPost");
 async function isLogin() {
   const token = localStorage.getItem("token");
   if (token) {
-    console.log("Im in");
     userId = await getUserIdByToken();
     return true;
   } else {
-    console.log("Im not in");
+    logoutBtn.innerText = "Log In";
     return false;
   }
 }
@@ -93,17 +84,11 @@ async function isLogin() {
 const logIn = isLogin();
 
 if (!logIn) {
-  logoutBtn.innerText = "Log In";
-}
-
-if (!logIn) {
   createPostBtn.addEventListener("click", (e) => {
-    //console.log(e);
     window.location.href = "login.html";
   });
 } else {
   createPostBtn.addEventListener("click", (e) => {
-    //console.log(e);
     window.location.href = "createPost.html";
   });
 }
@@ -117,7 +102,6 @@ async function getAllPosts() {
         const title = card.querySelector("[data-title]");
         const content = card.querySelector("[data-content]");
         const category = card.querySelector("[data-category]");
-        //const postId = post.post_id;
         const buttonClass = card.querySelector("[btn-apply]");
         buttonClass.classList.add(post.post_id);
         title.textContent = post.title;
@@ -129,7 +113,6 @@ async function getAllPosts() {
           content: post.content,
           category: post.category,
           element: card,
-          //post_id: postId
         };
       });
     });
@@ -148,9 +131,7 @@ if (logIn) {
           Authorization: token,
         },
       });
-      // console.log(response);
       const data = await response.json();
-      // console.log(data);
       const userId = data.userToken.user_id;
       return userId;
     } catch (error) {
@@ -162,7 +143,6 @@ if (logIn) {
   async function getUserName() {
     try {
       const userId = await getUserIdByToken();
-      // console.log(userId);
       if (!userId) {
         throw new Error("User ID not found.");
       }
@@ -178,7 +158,6 @@ if (logIn) {
         }
       );
       const userDetails = await userDetailsResponse.json();
-      console.log(userDetails);
       const userName = userDetails.username;
       userNamePage[0].innerText = userName.toUpperCase();
       userNamePage[0].addEventListener("click", (e) => {
