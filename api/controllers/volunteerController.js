@@ -73,5 +73,5 @@ module.exports = {
     create,
     update,
     destroy,
-    getByUserId
+    getByUserId,
 };
