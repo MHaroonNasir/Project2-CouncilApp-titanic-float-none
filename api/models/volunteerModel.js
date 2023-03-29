@@ -1,4 +1,5 @@
 const db = require('../db/connect');
+const Post = require('./postModel')
 
 class Volunteer {
     constructor({volunteer_id, post_id, user_id}) {
@@ -17,22 +18,29 @@ class Volunteer {
 
     static async getOneById(id, fieldName) {
         let response;
+        console.log("called", fieldName)
         if (fieldName == "volunteer_id") {
             response = await db.query("SELECT * FROM volunteer WHERE volunteer_id = $1;", [id]);
+            return new Volunteer(response.rows[0]);
         } else if (fieldName == "post_id") {
-            response = await db.query("SELECT * FROM volunteer WHERE post_id = $1;", [id]);
+            response = await db.query("SELECT *, v.volunteer_id FROM post AS p JOIN volunteer AS v ON (p.post_id = v.post_id) WHERE v.post_id = $1;", [id]);
         } else if (fieldName == "user_id") {
-            response = await db.query("SELECT * FROM volunteer AS v JOIN post AS p ON (v.post_id = p.post_id) WHERE v.user_id = $1;", [id]);
+            response = await db.query("SELECT *, v.volunteer_id FROM post AS p JOIN volunteer AS v ON (p.post_id = v.post_id) WHERE v.user_id = $1;", [id]);
         } else {
             throw new Error("Incorrect query string!");
         };
         if (response.rows.length < 1) {
             throw new Error("Cannot find Volunteer ID in Volunteer Table.");
         };
+        let arr = []
         if (response.rows.length != 1) {
-            return response.rows.map(v => new Volunteer(v));
+            response.rows.map(v => {
+                const newPost = new Post(v);
+                newPost.volunteer_id = v.volunteer_id
+                arr.push(newPost)
+            });
         }
-        return new Volunteer(response.rows[0]);
+        return arr;
     };
 
     static async create(data) {
