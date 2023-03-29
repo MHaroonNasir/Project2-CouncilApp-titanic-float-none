@@ -37,3 +37,27 @@ async function getAllPosts() {
     });
 }
 getAllPosts();
+
+const logoutBtn = document.getElementById("logout");
+const createPostBtn = document.getElementById("createPost");
+
+const isLogin = () => {
+  const token = localStorage.getItem("token");
+  // console.log(token);
+  if (!token) {
+    logoutBtn.innerText = "Log In";
+  }
+  if (!token) {
+    createPostBtn.addEventListener("click", (e) => {
+      window.location.href = "http://127.0.0.1:5500/client/login.html";
+    });
+  }
+  // if (!token) {
+  //   applyBtn.addEventListener("click", (e) => {
+  //     console.log(e);
+  //     window.location.href = "http://127.0.0.1:5500/client/login.html";
+  //   });
+  // }
+};
+
+isLogin();
