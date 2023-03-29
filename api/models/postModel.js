@@ -53,7 +53,7 @@ class Post {
     const response = await db.query("SELECT * FROM post WHERE user_id = $1;",
     [id]
     )
-    if (response.rows.length === 0) {
+    if (response.rows.length < 1) {
         throw new Error("No posts available");
       }
       return response.rows.map((a) => new Post(a));

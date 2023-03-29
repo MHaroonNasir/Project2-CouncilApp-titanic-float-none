@@ -59,6 +59,7 @@ async function destroy(req, res) {
       const userId = parseInt(req.params.id);
       const volunteer = await volunteerModel.getOneById(userId, "volunteer_id");
       const result = await volunteer.destroy();
+      console.log(volunteer)
       res.status(204).json(result);
     } catch (err) {
       res.status(404).json({ error: err.message });
