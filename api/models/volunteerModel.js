@@ -18,11 +18,11 @@ class Volunteer {
     static async getOneById(id, fieldName) {
         let response;
         if (fieldName == "volunteer_id") {
-            response = await db.query("SELECT * FROM volunteer WHERE volunteer_id = $1;", [id]);
+            response = await db.query("SELECT * FROM post AS p JOIN volunteer AS v ON (p.post_id = v.post_id) WHERE v.volunteer_id = $1;", [id]);
         } else if (fieldName == "post_id") {
-            response = await db.query("SELECT * FROM volunteer WHERE post_id = $1;", [id]);
+            response = await db.query("SELECT * FROM post AS p JOIN volunteer AS v ON (p.post_id = v.post_id) WHERE v.post_id = $1;", [id]);
         } else if (fieldName == "user_id") {
-            response = await db.query("SELECT * FROM volunteer AS v JOIN post AS p ON (v.post_id = p.post_id) WHERE v.user_id = $1;", [id]);
+            response = await db.query("SELECT * FROM post AS p JOIN volunteer AS v ON (p.post_id = v.post_id) WHERE v.user_id = $1;", [id]);
         } else {
             throw new Error("Incorrect query string!");
         };
