@@ -1,16 +1,29 @@
+async function getUserIdByToken() {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(`http://localhost:3000/token/${token}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    });
+    const data = await response.json();
+    const userId = data.userToken.user_id;
+    return userId;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
 async function getUserInfo() {
     try {
-        const token = localStorage.getItem("token");
-        const response = await fetch(`http://localhost:3000/token/${token}`, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: token,
-            },
-          });
-        const data = await response.json();
-        const userId = data.userToken.user_id;
-        console.log(userId)
+      const userId = await getUserIdByToken();
+      if (!userId) {
+        throw new Error("User ID not found.");
+      }
+      const token = localStorage.getItem("token");
         const userDetailsResponse = await fetch(`http://localhost:3000/account/${userId}`, {
           method: "GET",
           headers: {
@@ -58,3 +71,5 @@ async function getUserInfo() {
 }
 
 getUserInfo();
+
+module.exports = getUserIdByToken;
