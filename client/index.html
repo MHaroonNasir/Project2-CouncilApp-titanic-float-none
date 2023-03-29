@@ -12,12 +12,14 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,500;0,600;1,300&display=swap"
       rel="stylesheet"
     />
-    <script type="module" src="./assets/js/index.js" defer></script>
+
+    <script src="./assets/js/index.js" type="module" defer></script>
+
     <script src="./assets/js/logout.js" defer></script>
     <script src="./assets/js/createPost.js" defer></script>
+    <script src="./assets/js/userProfile.js" type="module" defer></script>
   </head>
   <body>
-
     <header>
       <nav class="index-header">
         <div class="logo">
@@ -26,17 +28,17 @@
         <div class="nav-links">
           <a class="user-link" href="./userProfile.html">Users Page</a>
           <button id="logout">Log Out</button>
-          <a href ="createPost.html" id="createPost">New Post</a>
+          <a id="createPost">New Post</a>
         </div>
       </nav>
       <div class="banner-area">
         <h1 class="page-title">Florin Council Community</h1>
         <div class="search-container">
           <label class="search-lable" for="search"
-            >Search for Vonlunteer jobs</label>
+            >Search for Vonlunteer jobs</label
+          >
           <input class="search-field" type="search" id="search" data-search />
         </div>
-
       </div>
     </header>
     <div class="content-area">
@@ -45,7 +47,7 @@
       <template data-post-template>
         <div class="card">
           <div class="card-content">
-            <button class="btn-apply">Apply</button>
+            <button class="btn-apply" btn-apply>Apply</button>
             <div class="title" data-title></div>
             <div class="content" data-content></div>
             <div class="category" data-category></div>

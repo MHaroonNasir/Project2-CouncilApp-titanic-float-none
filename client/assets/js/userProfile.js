@@ -160,5 +160,9 @@ async function getVolunteerPosts() {
 
 
 
+
 getUserInfo();
 getVolunteerPosts();
+
+export { getUserIdByToken }
+
