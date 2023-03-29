@@ -41,7 +41,7 @@ async function volunteer(e) {
       post_id: parseInt(e.target.classList[1]),
       user_id: parseInt(data["user_id"]),
     }),
-  })
+    })
     .then((response) => {
       if (!response) {
         throw new Error("No valid network response!");
