@@ -32,7 +32,8 @@ async function getTop(req, res) {
 async function create(req, res) {
   try {
     const data = req.body;
-    const post = await Post.create(data);
+    const userId = req.user_id;
+    const post = await Post.create(data, userId);
     res.status(201).json(post);
   } catch (err) {
     res.status(404).json({ error: err.message });
@@ -61,5 +62,15 @@ async function destroy(req, res) {
     res.status(404).json({ error: err.message });
   }
 }
+async function getByUserId(req, res) {
+  try {
+    const id = parseInt(req.params.id);
+    const posts  = await Post.getAllByUserId(id);
+    res.status(200).json(posts);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+  } 
 
-module.exports = { index, show, getTop, create, update, destroy };
+
+module.exports = { index, show, getTop, create, update, destroy, getByUserId };

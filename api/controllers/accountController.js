@@ -1,8 +1,7 @@
+const bcrypt = require("bcrypt");
 
-const bcrypt = require('bcrypt');
-
-const Token = require('../models/tokenModel');
-const accountModel = require('../models/accountModel');
+const Token = require("../models/tokenModel");
+const accountModel = require("../models/accountModel");
 
 async function index(req, res) {
   try {
@@ -22,7 +21,6 @@ async function show(req, res) {
     res.status(404).json({ error: err.message });
   }
 }
-
 
 async function create(req, res) {
   try {
@@ -57,57 +55,56 @@ async function destroy(req, res) {
   }
 }
 
-async function register (req, res) {
-    try {
-        const data = req.body;
-
-        const salt = await bcrypt.genSalt(parseInt(process.env.BCRYPT_SALT_ROUNDS));
-
-        data["password"] = await bcrypt.hash(data["password"], salt);
-
-        const result = await accountModel.create(data);
-
-        res.status(201).send(result);
-    } catch (err) {
-        res.status(400).json({"error": err.message})
-    }
-};
-async function login (req, res) {
+async function register(req, res) {
+  try {
     const data = req.body;
-    try {
-        const user = await accountModel.getOneByUsername(data.username);
 
-        const authenticated = await bcrypt.compare(data.password, user["password"]);
+    const salt = await bcrypt.genSalt(parseInt(process.env.BCRYPT_SALT_ROUNDS));
 
-        if (!authenticated) {
-            throw new Error("Incorrect credentials.");
-        } else {
-            const token = await Token.create(user.user_id);
-            res.status(200).json({ authenticated: true, token: token.token });
-        }
-        
-    } catch (err) {
-        res.status(403).json({"error": err.message})
+    data["password"] = await bcrypt.hash(data["password"], salt);
+
+    const result = await accountModel.create(data);
+
+    res.status(201).send(result);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+}
+async function login(req, res) {
+  const data = req.body;
+  try {
+    const user = await accountModel.getOneByUsername(data.username);
+
+    const authenticated = await bcrypt.compare(data.password, user["password"]);
+
+    if (!authenticated) {
+      throw new Error("Incorrect credentials.");
+    } else {
+      const token = await Token.create(user.user_id);
+      res.status(200).json({ authenticated: true, token: token.token });
     }
-};
-async function logout (req, res) {
-    const data = req.body;
-    try {
-        const token = await Token.getOneByToken(data.token);
-        if (!token) throw new Error("Invalid token.");
-        const result = await token.destroy();
-        res.status(200).json(result);
-    } catch (err) {
-        res.status(403).json({"error": err.message})
-    }
+  } catch (err) {
+    res.status(403).json({ error: err.message });
+  }
+}
+async function logout(req, res) {
+  const data = req.body;
+  try {
+    const token = await Token.getOneByToken(data.token);
+    if (!token) throw new Error("Invalid token.");
+    const result = await token.destroy();
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(403).json({ error: err.message });
+  }
 }
 
 module.exports = {
-    index,
-    show,
-    update,
-    destroy,
-    register,
-    login,
-    logout
+  index,
+  show,
+  update,
+  destroy,
+  register,
+  login,
+  logout,
 };

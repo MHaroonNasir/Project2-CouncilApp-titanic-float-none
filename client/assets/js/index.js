@@ -1,4 +1,3 @@
-
 const postCardTemplate = document.querySelector("[data-post-template]");
 const postCardContainer = document.querySelector("[data-post-cards-container]");
 const searchInput = document.querySelector("[data-search]");
@@ -29,7 +28,6 @@ const applyToVolunteer = () => {
 };
 
 async function getAllPosts() {
-
   await fetch(`http://localhost:3000/posts`)
     .then((response) => response.json())
     .then((data) => {
@@ -46,7 +44,7 @@ async function getAllPosts() {
 
         title.textContent = post.title;
         content.textContent = post.content;
-        category.textContent = post.category;
+        category.textContent = `Category: ${post.category}`;
         postCardContainer.appendChild(card);
         return {
           title: post.title,
