@@ -135,5 +135,64 @@ async function getAllPosts() {
   applyToVolunteer();
 }
 
+const userNamePage = document.getElementsByClassName("user-link");
+if (logIn) {
+  async function getUserIdByToken() {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(`http://localhost:3000/token/${token}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+      });
+      // console.log(response);
+      const data = await response.json();
+      // console.log(data);
+      const userId = data.userToken.user_id;
+      return userId;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  async function getUserName() {
+    try {
+      const userId = await getUserIdByToken();
+      // console.log(userId);
+      if (!userId) {
+        throw new Error("User ID not found.");
+      }
+      const token = localStorage.getItem("token");
+      const userDetailsResponse = await fetch(
+        `http://localhost:3000/account/${userId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+          },
+        }
+      );
+      const userDetails = await userDetailsResponse.json();
+      console.log(userDetails);
+      const userName = userDetails.username;
+      userNamePage[0].innerText = userName.toUpperCase();
+      userNamePage[0].addEventListener("click", (e) => {
+        console.log(e);
+        window.location.href = "userProfile.html";
+      });
+    } catch (error) {}
+  }
+  getUserName();
+} else {
+  userNamePage[0].addEventListener("click", (e) => {
+    console.log(e);
+    window.location.href = "login.html";
+  });
+}
+
 getAllPosts();
 getUserIdByToken();
