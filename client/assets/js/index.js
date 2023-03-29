@@ -195,5 +195,38 @@ if (logIn) {
   });
 }
 
+const options = {
+  method: 'GET',
+  headers: {
+    'X-RapidAPI-Key': '1b966221f6mshe27357ce1912d04p1dc00ajsn49c84317578b',
+    'X-RapidAPI-Host': 'quotes15.p.rapidapi.com'
+  }
+};
+
+ function fetchQuote() {
+    fetch('https://quotes15.p.rapidapi.com/quotes/random/', options)
+    .then(response => response.json())
+    .then(data => {
+      const quote = data.content;
+      const author = data.originator.name;
+
+      if (quote.length < 100) {
+        document.getElementById("quote").innerHTML = quote;
+        document.getElementById("author").innerHTML = author;
+      } else {
+        console.log("quote too long")
+        fetchQuote();
+      }
+    })
+    .catch(err => console.error(err));
+}
+
+fetchQuote();
+
+
+
+
+
+
 getAllPosts();
 getUserIdByToken();
