@@ -20,12 +20,20 @@ class Volunteer {
         let response;
         console.log("called", fieldName)
         if (fieldName == "volunteer_id") {
+<<<<<<< HEAD
             response = await db.query("SELECT * FROM volunteer WHERE volunteer_id = $1;", [id]);
             return new Volunteer(response.rows[0]);
         } else if (fieldName == "post_id") {
             response = await db.query("SELECT *, v.volunteer_id FROM post AS p JOIN volunteer AS v ON (p.post_id = v.post_id) WHERE v.post_id = $1;", [id]);
         } else if (fieldName == "user_id") {
             response = await db.query("SELECT *, v.volunteer_id FROM post AS p JOIN volunteer AS v ON (p.post_id = v.post_id) WHERE v.user_id = $1;", [id]);
+=======
+            response = await db.query("SELECT * FROM post AS p JOIN volunteer AS v ON (p.post_id = v.post_id) WHERE v.volunteer_id = $1;", [id]);
+        } else if (fieldName == "post_id") {
+            response = await db.query("SELECT * FROM post AS p JOIN volunteer AS v ON (p.post_id = v.post_id) WHERE v.post_id = $1;", [id]);
+        } else if (fieldName == "user_id") {
+            response = await db.query("SELECT * FROM post AS p JOIN volunteer AS v ON (p.post_id = v.post_id) WHERE v.user_id = $1;", [id]);
+>>>>>>> 1a5d29d0616372b3c9041a899803eecf33b23107
         } else {
             throw new Error("Incorrect query string!");
         };
