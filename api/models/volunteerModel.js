@@ -1,6 +1,5 @@
 const db = require('../db/connect');
 const Post = require('./postModel')
-
 class Volunteer {
     constructor({volunteer_id, post_id, user_id}) {
         this.volunteer_id = volunteer_id;
@@ -18,22 +17,13 @@ class Volunteer {
 
     static async getOneById(id, fieldName) {
         let response;
-        console.log("called", fieldName)
         if (fieldName == "volunteer_id") {
-<<<<<<< HEAD
             response = await db.query("SELECT * FROM volunteer WHERE volunteer_id = $1;", [id]);
             return new Volunteer(response.rows[0]);
         } else if (fieldName == "post_id") {
             response = await db.query("SELECT *, v.volunteer_id FROM post AS p JOIN volunteer AS v ON (p.post_id = v.post_id) WHERE v.post_id = $1;", [id]);
         } else if (fieldName == "user_id") {
             response = await db.query("SELECT *, v.volunteer_id FROM post AS p JOIN volunteer AS v ON (p.post_id = v.post_id) WHERE v.user_id = $1;", [id]);
-=======
-            response = await db.query("SELECT * FROM post AS p JOIN volunteer AS v ON (p.post_id = v.post_id) WHERE v.volunteer_id = $1;", [id]);
-        } else if (fieldName == "post_id") {
-            response = await db.query("SELECT * FROM post AS p JOIN volunteer AS v ON (p.post_id = v.post_id) WHERE v.post_id = $1;", [id]);
-        } else if (fieldName == "user_id") {
-            response = await db.query("SELECT * FROM post AS p JOIN volunteer AS v ON (p.post_id = v.post_id) WHERE v.user_id = $1;", [id]);
->>>>>>> 1a5d29d0616372b3c9041a899803eecf33b23107
         } else {
             throw new Error("Incorrect query string!");
         };
@@ -41,7 +31,7 @@ class Volunteer {
             throw new Error("Cannot find Volunteer ID in Volunteer Table.");
         };
         let arr = []
-        if (response.rows.length != 1) {
+        if (response.rows.length >= 1) {
             response.rows.map(v => {
                 const newPost = new Post(v);
                 newPost.volunteer_id = v.volunteer_id
@@ -69,7 +59,7 @@ class Volunteer {
     };
 
     async destroy() {
-        const response = await db.query("DELETE FROM volunteer WHERE volunteer_id = $1 RETURNING *;", 
+        let response = await db.query("DELETE FROM volunteer WHERE volunteer_id = $1 RETURNING *;", 
             [this.volunteer_id]);
         return new Volunteer(response.rows[0]);
     };

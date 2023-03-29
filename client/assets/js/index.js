@@ -1,6 +1,4 @@
-
-import { getUserIdByToken } from './userProfile.js';
-
+import { getUserIdByToken } from "./userProfile.js";
 
 const postCardTemplate = document.querySelector("[data-post-template]");
 const postCardContainer = document.querySelector("[data-post-cards-container]");
@@ -64,7 +62,7 @@ const applyToVolunteer = () => {
   //console.log(applyToPost)
   applyToPost.forEach((button) => {
     button.addEventListener("click", async (e) => {
-      if (await isLogin() == true) {
+      if ((await isLogin()) == true) {
         //console.log("logged in");
         //const userId = getUserIdByToken();
         //console.log(userId)
@@ -90,7 +88,7 @@ async function isLogin() {
     console.log("Im not in");
     return false;
   }
-};
+}
 
 const logIn = isLogin();
 
@@ -130,7 +128,7 @@ async function getAllPosts() {
           title: post.title,
           content: post.content,
           category: post.category,
-          element: card
+          element: card,
           //post_id: postId
         };
       });
