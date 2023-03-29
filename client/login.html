@@ -1,33 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./assets/favicon.ico">
-    <link rel="stylesheet" href="./assets//css/login-register.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./assets/favicon.ico" />
+    <link rel="stylesheet" href="./assets//css/login-register.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,500;0,600;1,300&display=swap"
+      rel="stylesheet"
+    />
     <script src="./assets/js/login.js" defer></script>
     <title>Florin Council</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <h1>Florin Council Community</h1>
-        
+      <h1>Our Council</h1>
     </header>
-    <hr />
-    <main>
+    <div class="login-container">
+      <main>
         <form id="login-form">
-            <fieldset>
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username">
-            </fieldset>
-            <fieldset>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password">
-            </fieldset>
-            <input type="submit" value="Log in">
+          <fieldset>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" />
+          </fieldset>
+          <fieldset>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" />
+          </fieldset>
+          <input type="submit" value="Log in" />
         </form>
         <p>No account? <a href="./register.html">Sign up here</a>.</p>
-    </main>
-</body>
+      </main>
+      <section>
+        <img
+          class="login-img"
+          src="https://images.unsplash.com/photo-1614915760393-96de312e2bf5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=436&q=80"
+          alt=""
+        />
+      </section>
+    </div>
+  </body>
 </html>
