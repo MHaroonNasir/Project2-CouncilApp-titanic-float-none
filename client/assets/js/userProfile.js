@@ -110,7 +110,8 @@ async function getVolunteerPosts() {
         const volunteerPosts = await userVolunteerResponse.json();
     const volunteerLists  = document.getElementById("volunteer-posts");
     if (volunteerPosts.length > 1){
-      userPosts.forEach((post) => {
+      volunteerPosts.forEach((post) => {
+        console.log(post);
         const card = document.createElement("div");
         card.classList.add("card");
         const cardTitle = document.createElement("h3");
