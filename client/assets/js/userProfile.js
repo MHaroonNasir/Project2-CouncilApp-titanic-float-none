@@ -55,9 +55,31 @@ async function getUserInfo() {
             cardContent.innerText = post.content;
             const cardCategory = document.createElement("p");
             cardCategory.innerText = `Category: ${post.category}`;
+            const cardPostId = post.post_id;
+
+            const deleteButton = document.createElement("button");
+            deleteButton.innerText = "Delete";
+
+            deleteButton.addEventListener("click", async () => {
+              try {
+                await fetch(`http://localhost:3000/posts/${cardPostId}`, {
+                  method: "DELETE",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: token,
+                  },
+                });
+                card.remove();
+              } catch (error) {
+                console.error(error);
+              }
+            });
+            
+
             card.appendChild(cardTitle);
             card.appendChild(cardContent);
             card.appendChild(cardCategory);
+            card.appendChild(deleteButton);
             postsList.appendChild(card);
         });
     } else {
@@ -71,5 +93,4 @@ async function getUserInfo() {
 }
 
 getUserInfo();
-
-module.exports = getUserIdByToken;
+export {getUserIdByToken};
