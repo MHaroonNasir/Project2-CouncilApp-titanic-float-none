@@ -30,6 +30,7 @@ async function getUserId() {
 async function volunteer(e) {
   console.log("called", e.target.classList[1]);
   const cardId = e.target.classList[1];
+  console.log(e.target.post_id)
 
   const data = await getUserId();
   console.log(data["user_id"]);
@@ -60,7 +61,15 @@ const applyToVolunteer = () => {
   const applyToPost = Array.from(document.getElementsByClassName("btn-apply"));
   //console.log(applyToPost)
   applyToPost.forEach((button) => {
-    button.addEventListener("click", () => isLogin);
+    button.addEventListener("click", () => {
+      if (isLogin()) {
+        console.log("logged in");
+        
+      } else {
+        console.log("logged out");
+        window.location.href = "login.html";
+      }
+    });
   });
 };
 
@@ -105,6 +114,7 @@ async function getAllPosts() {
         const title = card.querySelector("[data-title]");
         const content = card.querySelector("[data-content]");
         const category = card.querySelector("[data-category]");
+        //const postId = post.post_id;
         const buttonClass = card.querySelector("[btn-apply]");
         buttonClass.classList.add(post.post_id);
         title.textContent = post.title;
@@ -115,7 +125,8 @@ async function getAllPosts() {
           title: post.title,
           content: post.content,
           category: post.category,
-          element: card,
+          element: card
+          //post_id: postId
         };
       });
     });
