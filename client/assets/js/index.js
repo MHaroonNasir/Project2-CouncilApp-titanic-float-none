@@ -1,3 +1,5 @@
+import { getUserIdByToken } from './userProfile.js';
+
 const postCardTemplate = document.querySelector("[data-post-template]");
 const postCardContainer = document.querySelector("[data-post-cards-container]");
 const searchInput = document.querySelector("[data-search]");

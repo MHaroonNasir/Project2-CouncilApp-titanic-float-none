@@ -72,4 +72,4 @@ async function getUserInfo() {
 
 getUserInfo();
 
-module.exports = getUserIdByToken;
+export { getUserIdByToken }
