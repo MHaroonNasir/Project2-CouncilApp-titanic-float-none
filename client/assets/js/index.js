@@ -74,20 +74,15 @@ const createPostBtn = document.getElementById("createPost");
 async function isLogin() {
   const token = localStorage.getItem("token");
   if (token) {
-    console.log("Im in");
     userId = await getUserIdByToken();
     return true;
   } else {
-    console.log("Im not in");
+    logoutBtn.innerText = "Log In";
     return false;
   }
 }
 
 const logIn = isLogin();
-
-if (!logIn) {
-  logoutBtn.innerText = "Log In";
-}
 
 if (!logIn) {
   createPostBtn.addEventListener("click", (e) => {
@@ -164,7 +159,6 @@ if (logIn) {
         }
       );
       const userDetails = await userDetailsResponse.json();
-      console.log(userDetails);
       const userName = userDetails.username;
       userNamePage[0].innerText = userName.toUpperCase();
       userNamePage[0].addEventListener("click", (e) => {

@@ -7,29 +7,51 @@ html {
 }
 
 body {
-  background-color: #f2f2f2;
+  background-image: url("../images/pawel-czerwinski-dgJT71cXlC4-unsplash.jpeg");
   font-family: "Poppins", sans-serif;
+  background-size: cover;
   height: 100%;
 }
 
-header {
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+}
+
+.login-container {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 15px 0 15px;
+}
+
+span {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 10px 0;
+}
+
+/* header {
   background-color: #8c5858;
   height: 10vh;
   color: #f2dac4;
   display: flex;
   align-items: center;
-}
+} */
 
-h1 {
+/* h1 {
   margin-left: 5%;
   font-size: 2em;
-}
+} */
 
-.login-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
+/* .login-container {
+  display: grid;
+  grid-template-columns: min-content 1fr;
 }
 
 .login-img {
@@ -90,4 +112,4 @@ a {
 
 a:hover {
   text-decoration: underline;
-}
+} */
