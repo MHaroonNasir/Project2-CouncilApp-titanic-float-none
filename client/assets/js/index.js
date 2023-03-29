@@ -44,7 +44,7 @@ async function volunteer(e) {
       post_id: parseInt(e.target.classList[1]),
       user_id: parseInt(data["user_id"]),
     }),
-  })
+    })
     .then((response) => {
       if (!response) {
         throw new Error("No valid network response!");
@@ -54,6 +54,7 @@ async function volunteer(e) {
     .catch((error) => {
       console.error("Error:", error);
     });
+    window.location.href = "userProfile.html";
   //console.log("done");
 }
 
@@ -67,6 +68,7 @@ const applyToVolunteer = () => {
         //const userId = getUserIdByToken();
         //console.log(userId)
         volunteer(e);
+        //window.location.href = "userProfile.html";
       } else {
         //console.log("logged out");
         window.location.href = "login.html";
