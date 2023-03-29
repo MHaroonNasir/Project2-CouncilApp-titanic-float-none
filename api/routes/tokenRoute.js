@@ -7,4 +7,5 @@ const tokenRoute = Router();
 
 tokenRoute.get("/:token", tokenController);
 
+
 module.exports = tokenRoute;

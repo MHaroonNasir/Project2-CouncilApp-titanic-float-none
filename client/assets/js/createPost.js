@@ -29,7 +29,6 @@ form.addEventListener('submit', (event) => {
     return response.json();
   })
   .then(data => {
-    // Redirect the user to the new post page
     window.location.href = `index.html`;
   })
   .catch(error => {
