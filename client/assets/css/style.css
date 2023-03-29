@@ -144,6 +144,8 @@ nav {
   flex-direction: column;
   gap: 12px;
   padding: 12px;
+  position: relative;
+  top: -48px;
 }
 
 .title {
@@ -174,7 +176,7 @@ nav {
   align-self: end;
   margin-bottom: 25px;
   position: relative;
-  bottom: -243px;
+  bottom: -270px;
   cursor: pointer;
   box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
 }
