@@ -7,6 +7,7 @@ const postCardContainer = document.querySelector("[data-post-cards-container]");
 const searchInput = document.querySelector("[data-search]");
 
 let posts = [];
+let userId;
 
 searchInput.addEventListener("input", (e) => {
   const value = e.target.value.toLowerCase();
@@ -20,7 +21,7 @@ searchInput.addEventListener("input", (e) => {
 
 async function getUserId() {
   let dataHolder;
-  await fetch(`http://127.0.0.1:3000/account/5`)
+  await fetch(`http://127.0.0.1:3000/account/${userId}`)
     .then((response) => response.json())
     .then((data) => {
       //console.log(data)
@@ -30,12 +31,11 @@ async function getUserId() {
 }
 
 async function volunteer(e) {
-  console.log("called", e.target.classList[1]);
-  const cardId = e.target.classList[1];
-  console.log(e.target.post_id)
+  //console.log("called", e.target.classList[1]);
+  const postId = e.target.classList[1];
 
   const data = await getUserId();
-  console.log(data["user_id"]);
+  //console.log(data["user_id"]);
 
   await fetch(`http://127.0.0.1:3000/volunteer/`, {
     method: "POST",
@@ -56,19 +56,21 @@ async function volunteer(e) {
     .catch((error) => {
       console.error("Error:", error);
     });
-  console.log("done");
+  //console.log("done");
 }
 
 const applyToVolunteer = () => {
   const applyToPost = Array.from(document.getElementsByClassName("btn-apply"));
   //console.log(applyToPost)
   applyToPost.forEach((button) => {
-    button.addEventListener("click", () => {
-      if (isLogin()) {
-        console.log("logged in");
-        
+    button.addEventListener("click", async (e) => {
+      if (await isLogin() == true) {
+        //console.log("logged in");
+        //const userId = getUserIdByToken();
+        //console.log(userId)
+        volunteer(e);
       } else {
-        console.log("logged out");
+        //console.log("logged out");
         window.location.href = "login.html";
       }
     });
@@ -78,10 +80,11 @@ const applyToVolunteer = () => {
 const logoutBtn = document.getElementById("logout");
 const createPostBtn = document.getElementById("createPost");
 
-const isLogin = () => {
+async function isLogin() {
   const token = localStorage.getItem("token");
   if (token) {
     console.log("Im in");
+    userId = await getUserIdByToken();
     return true;
   } else {
     console.log("Im not in");
@@ -97,12 +100,12 @@ if (!logIn) {
 
 if (!logIn) {
   createPostBtn.addEventListener("click", (e) => {
-    console.log(e);
+    //console.log(e);
     window.location.href = "login.html";
   });
 } else {
   createPostBtn.addEventListener("click", (e) => {
-    console.log(e);
+    //console.log(e);
     window.location.href = "createPost.html";
   });
 }
