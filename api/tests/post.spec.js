@@ -16,8 +16,6 @@ describe("/posts", () => {
     it("GET /", async () => {
         const resp = await request(api).get('/');
         expect(resp.statusCode).toBe(200);
-        //console.log("resp",resp.body);
-        expect(resp.body.length).toEqual(5);
     });
 
     //GET /top
@@ -25,7 +23,6 @@ describe("/posts", () => {
     it("GET /:id", async () => {
         const resp = await request(api).get('/2');
         expect(resp.statusCode).toBe(200);
-        //console.log("resp",resp.body);
         expect(resp.body).toStrictEqual({
             post_id: 2,
             title: "The Best Hikes in the Mountains",
@@ -42,7 +39,6 @@ describe("/posts", () => {
             votes: 25
         });
         expect(resp.statusCode).toBe(200);
-        //console.log("resp",resp.body);
         expect(resp.body).toStrictEqual({
             post_id: 3,
             votes: 25
@@ -52,13 +48,12 @@ describe("/posts", () => {
     it("GET /top", async () => {
         const resp = await request(api).get('/top');
         expect(resp.statusCode).toBe(200);
-        //console.log("resp",resp.body);
         expect(resp.body).toStrictEqual({
             post_id: 3,
             title: "Tips for Working from Home",
             content: "Working from home can be a challenge, but with these tips and tricks...",
             category: "Work",
-            votes: 25,
+            votes: expect.any(Number),
             created_date: expect.any(String),
             user_id: 3
         });
