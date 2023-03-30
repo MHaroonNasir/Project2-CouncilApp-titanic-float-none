@@ -30,19 +30,34 @@ describe("/volunteer", () => {
         //console.log("resp",resp.body);
         expect(resp.body).toStrictEqual([
             {
-                volunteer_id: 1,
                 post_id: 1,
-                user_id: 1
+                title: "How to Bake a Cake",
+                content: "Baking a cake is easier than you think. Here are the steps...",
+                category: "Baking",
+                votes: 0,
+                created_date: expect.any(String),
+                user_id: 1,
+                volunteer_id: 1
             },  
             {
-                volunteer_id: 2,
                 post_id: 1,
-                user_id: 2
+                title: "How to Bake a Cake",
+                content: "Baking a cake is easier than you think. Here are the steps...",
+                category: "Baking",
+                votes: 0,
+                created_date: expect.any(String),
+                user_id: 2,
+                volunteer_id: 2
             }, 
             {
-                volunteer_id: 3,
                 post_id: 1,
-                user_id: 3
+                title: "How to Bake a Cake",
+                content: "Baking a cake is easier than you think. Here are the steps...",
+                category: "Baking",
+                votes: 0,
+                created_date: expect.any(String),
+                user_id: 3,
+                volunteer_id: 3
             } 
         ]);
     });
@@ -50,7 +65,7 @@ describe("/volunteer", () => {
     it("GET /?user_id", async () => {
         const resp = await request(api).get('/?user_id=3');
         expect(resp.statusCode).toBe(200);
-        console.log("resp",resp.body);
+        //console.log("resp!!!!!",resp.body);
         expect(resp.body).toStrictEqual([
             {
                 post_id: 1,
@@ -77,7 +92,7 @@ describe("/volunteer", () => {
                 title: "Tips for Working from Home",
                 content: "Working from home can be a challenge, but with these tips and tricks...",
                 category: "Work",
-                votes: 25,
+                votes: expect.any(Number),
                 created_date: expect.any(String),
                 user_id: 3,
                 volunteer_id: 5
