@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">49.09% </span>
+                <span class="strong">50.9% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>27/55</span>
+                <span class='fraction'>28/55</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">51.85% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>27/54</span>
+                <span class='fraction'>28/54</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -219,11 +219,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -245,19 +245,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -327,12 +327,12 @@ async function update(req, res) {
   }
 }
 &nbsp;
-async function <span class="fstat-no" title="function not covered" >destroy(</span>req, res) {
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    const userId = <span class="cstat-no" title="statement not covered" >parseInt(req.params.id);</span>
-    const account = <span class="cstat-no" title="statement not covered" >await accountModel.getOneById(userId);</span>
-    const result = <span class="cstat-no" title="statement not covered" >await account.destroy();</span>
-<span class="cstat-no" title="statement not covered" >    res.status(204).json(result);</span>
+async function destroy(req, res) {
+  try {
+    const userId = parseInt(req.params.id);
+    const account = await accountModel.getOneById(userId);
+    const result = await account.destroy();
+    res.status(204).json(result);
   } catch (err) {
 <span class="cstat-no" title="statement not covered" >    res.status(404).json({ error: err.message });</span>
   }
@@ -353,10 +353,10 @@ async function register(req, res) {
 <span class="cstat-no" title="statement not covered" >    res.status(400).json({ error: err.message });</span>
   }
 }
-async function login(req, res) {
-  const data = req.body;
-  try {
-    const user = await accountModel.getOneByUsername(data.username);
+async function <span class="fstat-no" title="function not covered" >login(</span>req, res) {
+  const data = <span class="cstat-no" title="statement not covered" >req.body;</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    const user = <span class="cstat-no" title="statement not covered" >await accountModel.getOneByUsername(data.username);</span>
     const authenticated = <span class="cstat-no" title="statement not covered" >await bcrypt.compare(data.password, user["password"]);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if (!authenticated) {</span>
@@ -366,7 +366,7 @@ async function login(req, res) {
 <span class="cstat-no" title="statement not covered" >      res.status(200).json({ authenticated: true, token: token.token });</span>
     }
   } catch (err) {
-    res.status(403).json({ error: err.message });
+<span class="cstat-no" title="statement not covered" >    res.status(403).json({ error: err.message });</span>
   }
 }
 async function <span class="fstat-no" title="function not covered" >logout(</span>req, res) {
@@ -397,7 +397,7 @@ module.exports = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-30T10:44:44.442Z
+                at 2023-03-30T13:03:32.110Z
             </div>
         <script src="../prettify.js"></script>
         <script>
