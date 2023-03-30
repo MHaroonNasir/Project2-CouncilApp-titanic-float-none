@@ -81,7 +81,7 @@ async function isLogin() {
   }
 }
 
-const logIn = isLogin();
+const logIn = await isLogin();
 
 if (!logIn) {
   createPostBtn.addEventListener("click", (e) => {

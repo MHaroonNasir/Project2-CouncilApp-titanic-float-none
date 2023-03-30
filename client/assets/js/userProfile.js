@@ -137,6 +137,9 @@ async function getVolunteerPosts() {
         cardCategory.innerText = `Category: ${post.category}`;
         const cardPostId = post.volunteer_id;
 
+        const deleteButton = document.createElement("button");
+        deleteButton.innerText = "Delete";
+
         deleteButton.addEventListener("click", async () => {
           if (confirm("Are you sure you want to delete this post?"))
             try {
