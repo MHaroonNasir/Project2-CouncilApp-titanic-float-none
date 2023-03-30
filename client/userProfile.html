@@ -4,14 +4,33 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/userProfile.css" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,500;0,600;1,300&display=swap"
+      rel="stylesheet"
+    />
     <script src="./assets/js/userProfile.js" type="module" defer></script>
+    <script src="./assets/js/createPost.js" defer></script>
+    <script src="./assets/js/logout.js" defer></script>
+    <script src="./assets/js/index.js" type="module" defer></script>
+
     <title>User Profile</title>
   </head>
   <body>
     <h1>User Profile</h1>
-    <a href="index.html"><button type="button">Home</button></a>
-    
+    <nav class="index-header">
+      <div class="logo">
+        <a href="#">Our Council</a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html"><button type="button">Home</button></a>
+        <button id="logout">Log Out</button>
+        <a href="createPost.html" id="createPost">New Post</a>
+      </div>
+    </nav>    
     <div>
       <h2>User Information</h2>
       <p>Username: <span id="username"></span></p>
@@ -19,13 +38,28 @@
     </div>
     <div>
       <h2>User Posts</h2>
-      <ul id="user-posts">
-      </ul>
+      
+      <div class="content-area">
+        <div class="post-cards cards-container">
+          
+          
+            <ul id="user-posts">
+            </ul>
+          
+       
+      </div>
+    </div>
     </div>
     <div>
       <h2>Volunteer Posts</h2>
       <ul id="volunteer-posts">
       </ul>
     </div>
+    <footer>
+      <h6>
+        <a href="index.html">Top ↑</a>
+      </h6>
+      <h6>Copyright ©</h6>
+    </footer>
 </body>
 </html>

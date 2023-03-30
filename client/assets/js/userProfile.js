@@ -45,20 +45,24 @@ async function getUserInfo() {
     });
     const userPosts = await userPostsResponse.json();
     const postsList  = document.getElementById("user-posts");
+
     if (userPosts.length >= 1){
       userPosts.forEach((post) => {
         const card = document.createElement("div");
         card.classList.add("card");
         const cardTitle = document.createElement("h3");
+        cardTitle.classList.add("title");
         cardTitle.innerText = post.title;
-            const cardContent = document.createElement("p");
-            cardContent.innerText = post.content;
-            const cardCategory = document.createElement("p");
-            cardCategory.innerText = `Category: ${post.category}`;
-            const cardPostId = post.post_id;
+        const cardContent = document.createElement("p");
+        cardContent.classList.add("content");
+        cardContent.innerText = post.content;
+        const cardCategory = document.createElement("p");
+        cardCategory.classList.add("category");
+        cardCategory.innerText = `Category: ${post.category}`;
+        const cardPostId = post.post_id;
             
-            const deleteButton = document.createElement("button");
-            deleteButton.innerText = "Delete";
+        const deleteButton = document.createElement("button");
+        deleteButton.innerText = "Delete";
 
             deleteButton.addEventListener("click", async () => {
               try {
@@ -115,14 +119,18 @@ async function getVolunteerPosts() {
         const card = document.createElement("div");
         card.classList.add("card");
         const cardTitle = document.createElement("h3");
+        cardTitle.classList.add("title");
         cardTitle.innerText = post.title;
         const cardContent = document.createElement("p");
+        cardContent.classList.add("content");
         cardContent.innerText = post.content;
         const cardCategory = document.createElement("p");
+        cardCategory.classList.add("category");
         cardCategory.innerText = `Category: ${post.category}`;
         const cardPostId = post.volunteer_id;
             
             const deleteButton = document.createElement("button");
+            deleteButton.classList.add("delete-btn");
             deleteButton.innerText = "Delete";
 
             deleteButton.addEventListener("click", async () => {
