@@ -18,35 +18,41 @@ async function getUserIdByToken() {
 }
 
 async function getUserInfo() {
-    try {
-      const userId = await getUserIdByToken();
-      if (!userId) {
-        throw new Error("User ID not found.");
+  try {
+    const userId = await getUserIdByToken();
+    if (!userId) {
+      throw new Error("User ID not found.");
+    }
+    const token = localStorage.getItem("token");
+    const userDetailsResponse = await fetch(
+      `http://localhost:3000/account/${userId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
       }
-      const token = localStorage.getItem("token");
-        const userDetailsResponse = await fetch(`http://localhost:3000/account/${userId}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: token,
-          },
-        });
-        const userDetails = await userDetailsResponse.json();
+    );
+    const userDetails = await userDetailsResponse.json();
     const { username, email } = userDetails;
-    document.getElementById("username").innerText = username;
+    document.getElementById("username").innerText = username.toUpperCase();
     document.getElementById("email").innerText = email;
-   
-    const userPostsResponse = await fetch(`http://localhost:3000/posts/user/${userId}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: token,
-      },
-    });
-    const userPosts = await userPostsResponse.json();
-    const postsList  = document.getElementById("user-posts");
 
-    if (userPosts.length >= 1){
+    const userPostsResponse = await fetch(
+      `http://localhost:3000/posts/user/${userId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+      }
+    );
+    const userPosts = await userPostsResponse.json();
+    const postsList = document.getElementById("user-posts");
+
+    if (userPosts.length >= 1) {
       userPosts.forEach((post) => {
         const card = document.createElement("div");
         card.classList.add("card");
@@ -60,42 +66,41 @@ async function getUserInfo() {
         cardCategory.classList.add("category");
         cardCategory.innerText = `Category: ${post.category}`;
         const cardPostId = post.post_id;
-            
+
         const deleteButton = document.createElement("button");
         deleteButton.innerText = "Delete";
 
-            deleteButton.addEventListener("click", async () => {
-              if (confirm("Are you sure you want to delete this post?"))
-              try {
-                await fetch(`http://localhost:3000/posts/${cardPostId}`, {
-                  method: "DELETE",
-                  headers: {
-                    "Content-Type": "application/json",
-                    Authorization: token,
-                  },
-                });
-                card.remove();
-              } catch (error) {
-                console.error(error);
-              }
-            });
-            
-            
-            card.appendChild(deleteButton);
-            card.appendChild(cardTitle);
-            card.appendChild(cardContent);
-            card.appendChild(cardCategory);
-            postsList.appendChild(card);
-            
+  
+
+        deleteButton.addEventListener("click", async () => {
+          if (confirm("Are you sure you want to delete this post?"))
+            try {
+              await fetch(`http://localhost:3000/posts/${cardPostId}`, {
+                method: "DELETE",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: token,
+                },
+              });
+              card.remove();
+            } catch (error) {
+              console.error(error);
+            }
+
         });
+
+        card.appendChild(deleteButton);
+        card.appendChild(cardCategory);
+        card.appendChild(cardTitle);
+        card.appendChild(cardContent);
+        postsList.appendChild(card);
+      });
     } else {
-        const listItem = document.createElement("li");
-        listItem.innerText = "No posts available";
-        postsList.appendChild(listItem);
-      }
-  } catch (error) {
-    
-  }
+      const listItem = document.createElement("li");
+      listItem.innerText = "No posts available";
+      postsList.appendChild(listItem);
+    }
+  } catch (error) {}
 }
 
 async function getVolunteerPosts() {
@@ -105,16 +110,19 @@ async function getVolunteerPosts() {
       throw new Error("User ID not found.");
     }
     const token = localStorage.getItem("token");
-      const userVolunteerResponse = await fetch(`http://localhost:3000/volunteer/?user_id=${userId}`, {
+    const userVolunteerResponse = await fetch(
+      `http://localhost:3000/volunteer/?user_id=${userId}`,
+      {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
           Authorization: token,
         },
-      });
-        const volunteerPosts = await userVolunteerResponse.json();
-    const volunteerLists  = document.getElementById("volunteer-posts");
-    if (volunteerPosts.length >= 1){
+      }
+    );
+    const volunteerPosts = await userVolunteerResponse.json();
+    const volunteerLists = document.getElementById("volunteer-posts");
+    if (volunteerPosts.length >= 1) {
       volunteerPosts.forEach((post) => {
         const card = document.createElement("div");
         card.classList.add("card");
@@ -128,51 +136,40 @@ async function getVolunteerPosts() {
         cardCategory.classList.add("category");
         cardCategory.innerText = `Category: ${post.category}`;
         const cardPostId = post.volunteer_id;
-            
-            const deleteButton = document.createElement("button");
-            deleteButton.classList.add("delete-btn");
-            deleteButton.innerText = "Delete";
 
-            deleteButton.addEventListener("click", async () => {
-              if (confirm("Are you sure you want to delete this post?"))
-              try {
-                await fetch(`http://localhost:3000/volunteer/${cardPostId}`, {
-                  method: "DELETE",
-                  headers: {
-                    "Content-Type": "application/json",
-                    Authorization: token,
-                  },
-                });
-                card.remove();   
-              } catch (error) {
-                console.error(error);
-              }
-            });
+        deleteButton.addEventListener("click", async () => {
+          if (confirm("Are you sure you want to delete this post?"))
+            try {
+              await fetch(`http://localhost:3000/volunteer/${cardPostId}`, {
+                method: "DELETE",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: token,
+                },
+              });
+              card.remove();
+            } catch (error) {
+              console.error(error);
+            }
+        });
 
-
-            card.appendChild(cardTitle);
-            card.appendChild(cardContent);
-            card.appendChild(cardCategory);
-            card.appendChild(deleteButton);
-            volunteerLists.appendChild(card);
-          });
-        } else {
-            const listItem = document.createElement("li");
-            listItem.innerText = "No posts available";
-            volunteerLists.appendChild(listItem);
-          }
-         } catch(error)
-    {
-      console.error(error)
+        card.appendChild(deleteButton);
+        card.appendChild(cardCategory);
+        card.appendChild(cardTitle);
+        card.appendChild(cardContent);
+        volunteerLists.appendChild(card);
+      });
+    } else {
+      const listItem = document.createElement("li");
+      listItem.innerText = "No posts available";
+      volunteerLists.appendChild(listItem);
     }
-    }
-    
-
-
-
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 getUserInfo();
 getVolunteerPosts();
 
-export { getUserIdByToken }
-
+export { getUserIdByToken };
