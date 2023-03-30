@@ -74,7 +74,6 @@ async function login(req, res) {
   const data = req.body;
   try {
     const user = await accountModel.getOneByUsername(data.username);
-
     const authenticated = await bcrypt.compare(data.password, user["password"]);
 
     if (!authenticated) {

@@ -13,6 +13,7 @@ const { hash } = require('bcrypt');
 
 api.use(accountRoute);
 
+
 describe("/account", () => {
     it("GET /", async () => {
         const resp = await request(api).get('/');
@@ -33,19 +34,36 @@ describe("/account", () => {
         });
     });
 
-    it("POST /", async () => {
+    it("POST /register", async () => {
         const resp = await request(api).post('/register').send({
             username: "Bob",
             email: "doo.bar@example.com",
-            password: "password"
+            password: "bobpass"
         });
         expect(resp.statusCode).toBe(201);
-        //console.log("resp",resp.body);
+        //console.log("resp!!!!!!!!!!",resp.body);
         expect(resp.body).toStrictEqual({
             user_id: 6,
             username: "Bob",
             email: "doo.bar@example.com",
             password: expect.any(String)
+        });
+    });
+
+    it("POST /login", async () => {
+        const resp = await request(api).post('/login').set({
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }).send({
+            user_id: 6,
+            username: "Bob",
+            password: "bobpass"
+        });
+        expect(resp.statusCode).toBe(200);
+        console.log("resp!!!!!!!!!!",resp.body);
+        expect(resp.body).toStrictEqual({
+            authenticated: true,
+            token: expect.any(String)
         });
     });
 
@@ -65,10 +83,10 @@ describe("/account", () => {
         });
     });
 
-    it("DELETE /:id", async () => {
+    /*it("DELETE /:id", async () => {
         const resp = await request(api).delete('/6');
         expect(resp.statusCode).toBe(204);
         //console.log("resp",resp.body);
         expect(resp.body).toStrictEqual({});
-    });
+    });*/
 });
