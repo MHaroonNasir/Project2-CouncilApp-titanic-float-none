@@ -70,6 +70,8 @@ async function getUserInfo() {
         const deleteButton = document.createElement("button");
         deleteButton.innerText = "Delete";
 
+  
+
         deleteButton.addEventListener("click", async () => {
           if (confirm("Are you sure you want to delete this post?"))
             try {
@@ -84,6 +86,7 @@ async function getUserInfo() {
             } catch (error) {
               console.error(error);
             }
+
         });
 
         card.appendChild(deleteButton);
@@ -121,7 +124,6 @@ async function getVolunteerPosts() {
     const volunteerLists = document.getElementById("volunteer-posts");
     if (volunteerPosts.length >= 1) {
       volunteerPosts.forEach((post) => {
-        console.log(post);
         const card = document.createElement("div");
         card.classList.add("card");
         const cardTitle = document.createElement("h3");
@@ -134,10 +136,6 @@ async function getVolunteerPosts() {
         cardCategory.classList.add("category");
         cardCategory.innerText = `Category: ${post.category}`;
         const cardPostId = post.volunteer_id;
-
-        const deleteButton = document.createElement("button");
-        deleteButton.classList.add("delete-btn");
-        deleteButton.innerText = "Delete";
 
         deleteButton.addEventListener("click", async () => {
           if (confirm("Are you sure you want to delete this post?"))
