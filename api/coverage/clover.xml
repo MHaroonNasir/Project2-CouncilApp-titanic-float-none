@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1680171954161" clover="3.2.0">
-  <project timestamp="1680171954161" name="All files">
-    <metrics statements="306" coveredstatements="177" conditionals="48" coveredconditionals="16" methods="55" coveredmethods="30" elements="409" coveredelements="223" complexity="0" loc="306" ncloc="306" packages="5" files="12" classes="12"/>
+<coverage generated="1680173084541" clover="3.2.0">
+  <project timestamp="1680173084542" name="All files">
+    <metrics statements="304" coveredstatements="176" conditionals="48" coveredconditionals="16" methods="55" coveredmethods="30" elements="407" coveredelements="222" complexity="0" loc="304" ncloc="304" packages="5" files="12" classes="12"/>
     <package name="controllers">
-      <metrics statements="132" coveredstatements="65" conditionals="4" coveredconditionals="0" methods="21" coveredmethods="12"/>
-      <file name="accountController.js" path="C:\Users\Haroon\Desktop\torvalds\lap2\project2\api\controllers\accountController.js">
-        <metrics statements="56" coveredstatements="28" conditionals="4" coveredconditionals="0" methods="8" coveredmethods="5"/>
+      <metrics statements="130" coveredstatements="64" conditionals="4" coveredconditionals="0" methods="21" coveredmethods="12"/>
+      <file name="accountController.js" path="C:\Users\44747\OneDrive\Desktop\FutureProof\torvalds\lap2\project\titanic-float-none\api\controllers\accountController.js">
+        <metrics statements="54" coveredstatements="27" conditionals="4" coveredconditionals="0" methods="8" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
@@ -46,24 +46,22 @@
         <line num="74" count="1" type="stmt"/>
         <line num="75" count="1" type="stmt"/>
         <line num="76" count="1" type="stmt"/>
-        <line num="77" count="1" type="stmt"/>
-        <line num="78" count="0" type="stmt"/>
-        <line num="79" count="0" type="stmt"/>
-        <line num="81" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="79" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="80" count="0" type="stmt"/>
         <line num="82" count="0" type="stmt"/>
-        <line num="84" count="0" type="stmt"/>
-        <line num="85" count="0" type="stmt"/>
-        <line num="88" count="1" type="stmt"/>
+        <line num="83" count="0" type="stmt"/>
+        <line num="86" count="1" type="stmt"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="91" count="0" type="stmt"/>
         <line num="92" count="0" type="stmt"/>
-        <line num="93" count="0" type="stmt"/>
+        <line num="93" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="94" count="0" type="stmt"/>
-        <line num="95" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="96" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
         <line num="97" count="0" type="stmt"/>
-        <line num="99" count="0" type="stmt"/>
-        <line num="103" count="1" type="stmt"/>
+        <line num="101" count="1" type="stmt"/>
       </file>
-      <file name="postController.js" path="C:\Users\Haroon\Desktop\torvalds\lap2\project2\api\controllers\postController.js">
+      <file name="postController.js" path="C:\Users\44747\OneDrive\Desktop\FutureProof\torvalds\lap2\project\titanic-float-none\api\controllers\postController.js">
         <metrics statements="40" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
@@ -106,7 +104,7 @@
         <line num="71" count="0" type="stmt"/>
         <line num="76" count="1" type="stmt"/>
       </file>
-      <file name="volunteerController.js" path="C:\Users\Haroon\Desktop\torvalds\lap2\project2\api\controllers\volunteerController.js">
+      <file name="volunteerController.js" path="C:\Users\44747\OneDrive\Desktop\FutureProof\torvalds\lap2\project\titanic-float-none\api\controllers\volunteerController.js">
         <metrics statements="36" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="3"/>
         <line num="2" count="1" type="stmt"/>
         <line num="5" count="0" type="stmt"/>
@@ -148,7 +146,7 @@
     </package>
     <package name="db">
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="connect.js" path="C:\Users\Haroon\Desktop\torvalds\lap2\project2\api\db\connect.js">
+      <file name="connect.js" path="C:\Users\44747\OneDrive\Desktop\FutureProof\torvalds\lap2\project\titanic-float-none\api\db\connect.js">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="3" type="stmt"/>
         <line num="3" count="3" type="stmt"/>
@@ -157,7 +155,7 @@
     </package>
     <package name="middleware">
       <metrics statements="12" coveredstatements="2" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="authenticator.js" path="C:\Users\Haroon\Desktop\torvalds\lap2\project2\api\middleware\authenticator.js">
+      <file name="authenticator.js" path="C:\Users\44747\OneDrive\Desktop\FutureProof\torvalds\lap2\project\titanic-float-none\api\middleware\authenticator.js">
         <metrics statements="12" coveredstatements="2" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="4" count="0" type="stmt"/>
@@ -175,7 +173,7 @@
     </package>
     <package name="models">
       <metrics statements="127" coveredstatements="75" conditionals="40" coveredconditionals="16" methods="33" coveredmethods="18"/>
-      <file name="accountModel.js" path="C:\Users\Haroon\Desktop\torvalds\lap2\project2\api\models\accountModel.js">
+      <file name="accountModel.js" path="C:\Users\44747\OneDrive\Desktop\FutureProof\torvalds\lap2\project\titanic-float-none\api\models\accountModel.js">
         <metrics statements="30" coveredstatements="24" conditionals="8" coveredconditionals="4" methods="8" coveredmethods="7"/>
         <line num="1" count="1" type="stmt"/>
         <line num="5" count="9" type="stmt"/>
@@ -208,7 +206,7 @@
         <line num="69" count="0" type="stmt"/>
         <line num="73" count="1" type="stmt"/>
       </file>
-      <file name="postModel.js" path="C:\Users\Haroon\Desktop\torvalds\lap2\project2\api\models\postModel.js">
+      <file name="postModel.js" path="C:\Users\44747\OneDrive\Desktop\FutureProof\torvalds\lap2\project\titanic-float-none\api\models\postModel.js">
         <metrics statements="34" coveredstatements="21" conditionals="10" coveredconditionals="4" methods="10" coveredmethods="6"/>
         <line num="2" count="2" type="stmt"/>
         <line num="14" count="15" type="stmt"/>
@@ -245,7 +243,7 @@
         <line num="82" count="0" type="stmt"/>
         <line num="86" count="2" type="stmt"/>
       </file>
-      <file name="tokenModel.js" path="C:\Users\Haroon\Desktop\torvalds\lap2\project2\api\models\tokenModel.js">
+      <file name="tokenModel.js" path="C:\Users\44747\OneDrive\Desktop\FutureProof\torvalds\lap2\project\titanic-float-none\api\models\tokenModel.js">
         <metrics statements="26" coveredstatements="3" conditionals="8" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="1" count="2" type="stmt"/>
         <line num="3" count="2" type="stmt"/>
@@ -274,7 +272,7 @@
         <line num="54" count="0" type="stmt"/>
         <line num="59" count="2" type="stmt"/>
       </file>
-      <file name="volunteerModel.js" path="C:\Users\Haroon\Desktop\torvalds\lap2\project2\api\models\volunteerModel.js">
+      <file name="volunteerModel.js" path="C:\Users\44747\OneDrive\Desktop\FutureProof\torvalds\lap2\project\titanic-float-none\api\models\volunteerModel.js">
         <metrics statements="37" coveredstatements="27" conditionals="14" coveredconditionals="8" methods="9" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -317,7 +315,7 @@
     </package>
     <package name="routes">
       <metrics statements="32" coveredstatements="32" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="accountRoute.js" path="C:\Users\Haroon\Desktop\torvalds\lap2\project2\api\routes\accountRoute.js">
+      <file name="accountRoute.js" path="C:\Users\44747\OneDrive\Desktop\FutureProof\torvalds\lap2\project\titanic-float-none\api\routes\accountRoute.js">
         <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -331,7 +329,7 @@
         <line num="14" count="1" type="stmt"/>
         <line num="16" count="1" type="stmt"/>
       </file>
-      <file name="postRoutes.js" path="C:\Users\Haroon\Desktop\torvalds\lap2\project2\api\routes\postRoutes.js">
+      <file name="postRoutes.js" path="C:\Users\44747\OneDrive\Desktop\FutureProof\torvalds\lap2\project\titanic-float-none\api\routes\postRoutes.js">
         <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
@@ -346,7 +344,7 @@
         <line num="16" count="1" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
       </file>
-      <file name="volunteerRoute.js" path="C:\Users\Haroon\Desktop\torvalds\lap2\project2\api\routes\volunteerRoute.js">
+      <file name="volunteerRoute.js" path="C:\Users\44747\OneDrive\Desktop\FutureProof\torvalds\lap2\project\titanic-float-none\api\routes\volunteerRoute.js">
         <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
