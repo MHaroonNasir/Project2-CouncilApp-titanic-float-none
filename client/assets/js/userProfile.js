@@ -51,6 +51,7 @@ async function getUserInfo() {
     );
     const userPosts = await userPostsResponse.json();
     const postsList = document.getElementById("user-posts");
+
     if (userPosts.length >= 1) {
       userPosts.forEach((post) => {
         const card = document.createElement("div");
@@ -135,6 +136,7 @@ async function getVolunteerPosts() {
         const cardPostId = post.volunteer_id;
 
         const deleteButton = document.createElement("button");
+        deleteButton.classList.add("delete-btn");
         deleteButton.innerText = "Delete";
 
         deleteButton.addEventListener("click", async () => {
