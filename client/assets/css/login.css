@@ -66,24 +66,18 @@ header {
 .input {
   height: 45px;
   width: 87%;
+  font-size: 14px;
   border: none;
   outline: none;
   border-radius: 30px;
   color: #fff;
   padding: 0 0 0 45px;
   margin-bottom: 20px;
-  background: rgba(255, 255, 255, 0.3);
-}
-
-i {
-  color: #fff;
-  position: relative;
-  top: -51px;
-  left: 16px;
+  background: rgba(255, 255, 255, 0.4);
 }
 
 ::-webkit-input-placeholder {
-  color: #fff;
+  color: #3b4b59;
 }
 
 .submit {
