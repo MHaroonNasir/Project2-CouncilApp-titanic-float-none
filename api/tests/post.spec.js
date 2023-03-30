@@ -62,5 +62,5 @@ describe("/posts", () => {
             created_date: expect.any(String),
             user_id: 3
         });
-    });
+    }); 
 });
