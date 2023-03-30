@@ -18,79 +18,85 @@ async function getUserIdByToken() {
 }
 
 async function getUserInfo() {
-    try {
-      const userId = await getUserIdByToken();
-      if (!userId) {
-        throw new Error("User ID not found.");
+  try {
+    const userId = await getUserIdByToken();
+    if (!userId) {
+      throw new Error("User ID not found.");
+    }
+    const token = localStorage.getItem("token");
+    const userDetailsResponse = await fetch(
+      `http://localhost:3000/account/${userId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
       }
-      const token = localStorage.getItem("token");
-        const userDetailsResponse = await fetch(`http://localhost:3000/account/${userId}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: token,
-          },
-        });
-        const userDetails = await userDetailsResponse.json();
+    );
+    const userDetails = await userDetailsResponse.json();
     const { username, email } = userDetails;
-    document.getElementById("username").innerText = username;
+    document.getElementById("username").innerText = username.toUpperCase();
     document.getElementById("email").innerText = email;
-   
-    const userPostsResponse = await fetch(`http://localhost:3000/posts/user/${userId}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: token,
-      },
-    });
+
+    const userPostsResponse = await fetch(
+      `http://localhost:3000/posts/user/${userId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+      }
+    );
     const userPosts = await userPostsResponse.json();
-    const postsList  = document.getElementById("user-posts");
-    if (userPosts.length >= 1){
+    const postsList = document.getElementById("user-posts");
+    if (userPosts.length >= 1) {
       userPosts.forEach((post) => {
         const card = document.createElement("div");
         card.classList.add("card");
         const cardTitle = document.createElement("h3");
+        cardTitle.classList.add("title");
         cardTitle.innerText = post.title;
-            const cardContent = document.createElement("p");
-            cardContent.innerText = post.content;
-            const cardCategory = document.createElement("p");
-            cardCategory.innerText = `Category: ${post.category}`;
-            const cardPostId = post.post_id;
-            
-            const deleteButton = document.createElement("button");
-            deleteButton.innerText = "Delete";
+        const cardContent = document.createElement("p");
+        cardContent.classList.add("content");
+        cardContent.innerText = post.content;
+        const cardCategory = document.createElement("p");
+        cardCategory.classList.add("category");
+        cardCategory.innerText = `Category: ${post.category}`;
+        const cardPostId = post.post_id;
 
-            deleteButton.addEventListener("click", async () => {
-              try {
-                await fetch(`http://localhost:3000/posts/${cardPostId}`, {
-                  method: "DELETE",
-                  headers: {
-                    "Content-Type": "application/json",
-                    Authorization: token,
-                  },
-                });
-                card.remove();
-              } catch (error) {
-                console.error(error);
-              }
-            });
-            
-            
-            card.appendChild(cardTitle);
-            card.appendChild(cardContent);
-            card.appendChild(cardCategory);
-            card.appendChild(deleteButton);
-            postsList.appendChild(card);
-            
+        const deleteButton = document.createElement("button");
+        deleteButton.innerText = "Delete";
+
+        deleteButton.addEventListener("click", async () => {
+          if (confirm("Are you sure you want to delete this post?"))
+            try {
+              await fetch(`http://localhost:3000/posts/${cardPostId}`, {
+                method: "DELETE",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: token,
+                },
+              });
+              card.remove();
+            } catch (error) {
+              console.error(error);
+            }
         });
+
+        card.appendChild(deleteButton);
+        card.appendChild(cardCategory);
+        card.appendChild(cardTitle);
+        card.appendChild(cardContent);
+        postsList.appendChild(card);
+      });
     } else {
-        const listItem = document.createElement("li");
-        listItem.innerText = "No posts available";
-        postsList.appendChild(listItem);
-      }
-  } catch (error) {
-    
-  }
+      const listItem = document.createElement("li");
+      listItem.innerText = "No posts available";
+      postsList.appendChild(listItem);
+    }
+  } catch (error) {}
 }
 
 async function getVolunteerPosts() {
@@ -100,70 +106,70 @@ async function getVolunteerPosts() {
       throw new Error("User ID not found.");
     }
     const token = localStorage.getItem("token");
-      const userVolunteerResponse = await fetch(`http://localhost:3000/volunteer/?user_id=${userId}`, {
+    const userVolunteerResponse = await fetch(
+      `http://localhost:3000/volunteer/?user_id=${userId}`,
+      {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
           Authorization: token,
         },
-      });
-        const volunteerPosts = await userVolunteerResponse.json();
-    const volunteerLists  = document.getElementById("volunteer-posts");
-    if (volunteerPosts.length >= 1){
+      }
+    );
+    const volunteerPosts = await userVolunteerResponse.json();
+    const volunteerLists = document.getElementById("volunteer-posts");
+    if (volunteerPosts.length >= 1) {
       volunteerPosts.forEach((post) => {
         console.log(post);
         const card = document.createElement("div");
         card.classList.add("card");
         const cardTitle = document.createElement("h3");
+        cardTitle.classList.add("title");
         cardTitle.innerText = post.title;
         const cardContent = document.createElement("p");
+        cardContent.classList.add("content");
         cardContent.innerText = post.content;
         const cardCategory = document.createElement("p");
+        cardCategory.classList.add("category");
         cardCategory.innerText = `Category: ${post.category}`;
         const cardPostId = post.volunteer_id;
-            
-            const deleteButton = document.createElement("button");
-            deleteButton.innerText = "Delete";
 
-            deleteButton.addEventListener("click", async () => {
-              try {
-                await fetch(`http://localhost:3000/volunteer/${cardPostId}`, {
-                  method: "DELETE",
-                  headers: {
-                    "Content-Type": "application/json",
-                    Authorization: token,
-                  },
-                });
-                card.remove();   
-              } catch (error) {
-                console.error(error);
-              }
-            });
+        const deleteButton = document.createElement("button");
+        deleteButton.innerText = "Delete";
 
+        deleteButton.addEventListener("click", async () => {
+          if (confirm("Are you sure you want to delete this post?"))
+            try {
+              await fetch(`http://localhost:3000/volunteer/${cardPostId}`, {
+                method: "DELETE",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: token,
+                },
+              });
+              card.remove();
+            } catch (error) {
+              console.error(error);
+            }
+        });
 
-            card.appendChild(cardTitle);
-            card.appendChild(cardContent);
-            card.appendChild(cardCategory);
-            card.appendChild(deleteButton);
-            volunteerLists.appendChild(card);
-          });
-        } else {
-            const listItem = document.createElement("li");
-            listItem.innerText = "No posts available";
-            volunteerLists.appendChild(listItem);
-          }
-         } catch(error)
-    {
-      console.error(error)
+        card.appendChild(deleteButton);
+        card.appendChild(cardCategory);
+        card.appendChild(cardTitle);
+        card.appendChild(cardContent);
+        volunteerLists.appendChild(card);
+      });
+    } else {
+      const listItem = document.createElement("li");
+      listItem.innerText = "No posts available";
+      volunteerLists.appendChild(listItem);
     }
-    }
-    
-
-
-
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 getUserInfo();
 getVolunteerPosts();
 
-export { getUserIdByToken }
-
+export { getUserIdByToken };
