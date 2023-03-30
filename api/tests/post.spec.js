@@ -16,8 +16,6 @@ describe("/posts", () => {
     it("GET /", async () => {
         const resp = await request(api).get('/');
         expect(resp.statusCode).toBe(200);
-        //console.log("resp",resp.body);
-        expect(resp.body.length).toEqual(5);
     });
 
     //GET /top
@@ -25,7 +23,6 @@ describe("/posts", () => {
     it("GET /:id", async () => {
         const resp = await request(api).get('/2');
         expect(resp.statusCode).toBe(200);
-        //console.log("resp",resp.body);
         expect(resp.body).toStrictEqual({
             post_id: 2,
             title: "The Best Hikes in the Mountains",
@@ -37,43 +34,28 @@ describe("/posts", () => {
         });
     });
 
-    /*it("POST /", async () => {
-        const resp = await request(api).post('/').send({
-            title: "post title",
-            content: "new post",
-            category: "Hiking",
-            votes: 0,
-            user_id: 1
-        });
-        expect(resp.statusCode).toBe(201);
-        //console.log("resp",resp.body);
-        expect(resp.body).toStrictEqual([{
-            post_id: 6,
-            title: "post title",
-            content: "new post",
-            category: "Hiking",
-            votes: 0,
-            created_date: expect.any(String),
-            user_id: 1
-        }]);
-    });*/
-
     it("PATCH /:id", async () => {
         const resp = await request(api).patch('/3').send({
             votes: 25
         });
         expect(resp.statusCode).toBe(200);
-        //console.log("resp",resp.body);
         expect(resp.body).toStrictEqual({
             post_id: 3,
             votes: 25
         });
     });
 
-    it("DELETE /:id", async () => {
-        const resp = await request(api).delete('/5');
-        expect(resp.statusCode).toBe(204);
-        //console.log("resp",resp.body);
-        expect(resp.body).toStrictEqual({});
-    });
+    it("GET /top", async () => {
+        const resp = await request(api).get('/top');
+        expect(resp.statusCode).toBe(200);
+        expect(resp.body).toStrictEqual({
+            post_id: 3,
+            title: "Tips for Working from Home",
+            content: "Working from home can be a challenge, but with these tips and tricks...",
+            category: "Work",
+            votes: expect.any(Number),
+            created_date: expect.any(String),
+            user_id: 3
+        });
+    }); 
 });

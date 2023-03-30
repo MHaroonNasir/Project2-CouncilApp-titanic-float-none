@@ -60,7 +60,6 @@ const applyToVolunteer = () => {
     button.addEventListener("click", async (e) => {
       if ((await isLogin()) == true) {
         volunteer(e);
-        // window.location.href = 'userProfile.html'
       } else {
         window.location.href = "login.html";
       }
@@ -82,7 +81,7 @@ async function isLogin() {
   }
 }
 
-const logIn = isLogin();
+const logIn = await isLogin();
 
 if (!logIn) {
   createPostBtn.addEventListener("click", (e) => {

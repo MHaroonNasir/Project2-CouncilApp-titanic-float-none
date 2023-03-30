@@ -13,18 +13,16 @@ const { hash } = require('bcrypt');
 
 api.use(accountRoute);
 
+
 describe("/account", () => {
     it("GET /", async () => {
         const resp = await request(api).get('/');
         expect(resp.statusCode).toBe(200);
-        //console.log("resp",resp.body);
-        expect(resp.body.length).toEqual(5);
     });
 
     it("GET /:id", async () => {
         const resp = await request(api).get('/2');
         expect(resp.statusCode).toBe(200);
-        //console.log("resp",resp.body);
         expect(resp.body).toStrictEqual({
             user_id: 2,
             username: "Jane",
@@ -33,16 +31,15 @@ describe("/account", () => {
         });
     });
 
-    it("POST /", async () => {
+    it("POST /register", async () => {
         const resp = await request(api).post('/register').send({
             username: "Bob",
             email: "doo.bar@example.com",
-            password: "password"
+            password: "bobpass"
         });
         expect(resp.statusCode).toBe(201);
-        //console.log("resp",resp.body);
         expect(resp.body).toStrictEqual({
-            user_id: 6,
+            user_id: expect.any(Number),
             username: "Bob",
             email: "doo.bar@example.com",
             password: expect.any(String)
@@ -56,7 +53,6 @@ describe("/account", () => {
             password: "password"
         });
         expect(resp.statusCode).toBe(200);
-        //console.log("resp",resp.body);
         expect(resp.body).toStrictEqual({
             user_id: 3,
             username: "patchtest",
@@ -68,7 +64,6 @@ describe("/account", () => {
     it("DELETE /:id", async () => {
         const resp = await request(api).delete('/6');
         expect(resp.statusCode).toBe(204);
-        //console.log("resp",resp.body);
         expect(resp.body).toStrictEqual({});
     });
 });

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="./assets/favicon.ico" />
-    <link rel="stylesheet" href="./assets//css/login-register.css" />
+    <link rel="stylesheet" href="./assets//css/login.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,22 +19,30 @@
     <div class="box">
       <div class="login-container">
         <div class="top-header">
-          <span
-            >Welcome back, <br />
-            to Our Council!</span
-          >
+          <span>Welcome back!</span>
+          <h1>Our Council</h1>
           <header>Login</header>
         </div>
         <form id="login-form">
           <div class="input-field">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" />
+            <input
+              type="text"
+              class="input"
+              id="username"
+              name="username"
+              placeholder="Username"
+            />
           </div>
           <div class="input-field">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" />
+            <input
+              type="password"
+              class="input"
+              id="password"
+              name="password"
+              placeholder="Password"
+            />
           </div>
-          <input type="submit" value="Log in" />
+          <input type="submit" class="submit" value="Log in" />
         </form>
         <div class="bottom">
           <p>No account? <a href="./register.html">Sign up here</a>.</p>
