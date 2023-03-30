@@ -55,7 +55,6 @@ describe("/account", () => {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         }).send({
-            user_id: 6,
             username: "Bob",
             password: "bobpass"
         });
