@@ -1,4 +1,4 @@
-# (name of council)
+# Our Council
 
 ## Problem Statment
 
