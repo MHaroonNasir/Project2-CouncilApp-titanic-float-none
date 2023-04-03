@@ -1,3 +1,4 @@
+
 # Our Council
 
 ## Problem Statment
@@ -18,31 +19,31 @@ The application's purpose is for the localo council, or members of the community
 
 - The user is able to login to the website and gain an auth token that acts as the validator for other functionality.
   
-![Login]()
+![Login](./client/assets/images/Login.PNG)
 
 ###### Register
 
 - A user is bale to register, a new entry will be made to DB that hashes and store their password.
 
-![Register]()
+![Register](./client/assets/images/Register.PNG)
 
 ###### Index (Main/Search Page)
 
 - Here, the users will be able to see the full list of posts. Some will exist by default and should any user create a new post, that will also be showcased here. Each post will be accompanied by an apply button which will allow the user to volunteer for helping resolve the issue described.
 
-![Index]()
+![Index](./client/assets/images/Index.PNG)
 
 ###### Create Post
 
 - The user can opt to create a newpost for others to see regarding any issue they believe exists locally. A title, brief description and category are required.
 
-![Create Post]()
+![Create Post](./client/assets/images/CreatePost.PNG)
 
 ###### User Profile
 
 - Each user will have their own user profile where they can view their details and lists which showcase the posts they have created and applied/volunteered to.
 
-![User Profile]()
+![User Profile](./client/assets/images/UserProfile.PNG)
 
 ### Team Titanic \{ float: none \}
 - **Bart Rayson**
